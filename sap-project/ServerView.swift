@@ -10,7 +10,7 @@ import SwiftUI
 struct ServerView: View {
    var body: some View {
        NavigationStack() {
-           Form {
+           List {
                Section(header: Text("Configured workflows")) {
                    Text("Refresh SSL Certificates")
                    Text("Push to docker registry")
@@ -20,9 +20,8 @@ struct ServerView: View {
                    } label: {
                        Text("Add new workflow")
                    }
-                   
                }
-               
+			   
                Section(header: Text("Service widgets")) {
                    Text("Docker")
                    Text("systemd")
@@ -32,8 +31,6 @@ struct ServerView: View {
                        Text("Add service widget")
                    }
                }
-           
-              
            }
            .navigationTitle("Server 1")
        }

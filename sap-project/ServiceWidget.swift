@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct MonitorWidgetLine {
-	let key: String
-	let value: String
-	let color: Int
+struct ServiceWidgetLine {
+	var indicator: String
+	var value: String
+	var color: Int
 	
 	func extractColor() -> Color {
 		switch color {
@@ -26,9 +26,9 @@ struct MonitorWidgetLine {
 	}
 }
 
-struct MonitorWidget: View {
+struct ServiceWidget: View {
 	let title: String
-	let lines: [MonitorWidgetLine]
+	let lines: [ServiceWidgetLine]
 	
 	var body: some View {
 		VStack(alignment: .leading) {
@@ -37,12 +37,12 @@ struct MonitorWidget: View {
 					.font(.headline)
 			}
 			
-			ForEach(lines, id: \.key) { monitorWidgetLine in
+			ForEach(lines, id: \.indicator) { serviceWidgetLine in
 				HStack {
-					Text(monitorWidgetLine.key)
+					Text(serviceWidgetLine.indicator)
 					Spacer()
-					Text(monitorWidgetLine.value)
-						.foregroundStyle(monitorWidgetLine.extractColor())
+					Text(serviceWidgetLine.value)
+						.foregroundStyle(serviceWidgetLine.extractColor())
 				}
 			}
 		}
@@ -53,11 +53,11 @@ struct MonitorWidget: View {
 	}
 }
 
-let lines: [MonitorWidgetLine] = [
-	MonitorWidgetLine(key: "running", value: "2 cont.", color: 0),
-	MonitorWidgetLine(key: "exited", value: "2 exited", color: 1)
+let lines: [ServiceWidgetLine] = [
+	ServiceWidgetLine(indicator: "running", value: "2 cont.", color: 0),
+	ServiceWidgetLine(indicator: "exited", value: "2 exited", color: 1)
 ]
 
 #Preview {
-	MonitorWidget(title: "Docker", lines: lines)
+	ServiceWidget(title: "Docker", lines: lines)
 }

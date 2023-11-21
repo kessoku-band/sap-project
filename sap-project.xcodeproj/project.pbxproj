@@ -7,19 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A6C40A42B0C9351004D021E /* NewServiceWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6C40A32B0C9351004D021E /* NewServiceWidgetView.swift */; };
+		9A6C40A62B0C9E26004D021E /* PreconfiguredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6C40A52B0C9E26004D021E /* PreconfiguredView.swift */; };
 		9A6D1B2B2B04A8F80097FFD1 /* sap_projectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6D1B2A2B04A8F80097FFD1 /* sap_projectApp.swift */; };
 		9A6D1B2D2B04A8F80097FFD1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6D1B2C2B04A8F80097FFD1 /* ContentView.swift */; };
 		9A6D1B2F2B04A8FA0097FFD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A6D1B2E2B04A8FA0097FFD1 /* Assets.xcassets */; };
 		9A6D1B322B04A8FA0097FFD1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A6D1B312B04A8FA0097FFD1 /* Preview Assets.xcassets */; };
 		9AF631C12B04AAD6002FCF4C /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF631C02B04AAD6002FCF4C /* DashboardView.swift */; };
 		9AF631C32B04AC71002FCF4C /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF631C22B04AC71002FCF4C /* ServicesView.swift */; };
-		9AF631C52B04B343002FCF4C /* MonitorWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF631C42B04B343002FCF4C /* MonitorWidget.swift */; };
-		F947C1D02B0C711B00D2AC62 /* ServiceWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F947C1CF2B0C711B00D2AC62 /* ServiceWidgetView.swift */; };
+		9AF631C52B04B343002FCF4C /* ServiceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF631C42B04B343002FCF4C /* ServiceWidget.swift */; };
 		F947C1D22B0C71A900D2AC62 /* ServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F947C1D12B0C71A900D2AC62 /* ServerView.swift */; };
 		F947C1D42B0C71E900D2AC62 /* WorkflowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F947C1D32B0C71E900D2AC62 /* WorkflowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A6C40A32B0C9351004D021E /* NewServiceWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewServiceWidgetView.swift; sourceTree = "<group>"; };
+		9A6C40A52B0C9E26004D021E /* PreconfiguredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreconfiguredView.swift; sourceTree = "<group>"; };
 		9A6D1B272B04A8F80097FFD1 /* sap-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sap-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6D1B2A2B04A8F80097FFD1 /* sap_projectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sap_projectApp.swift; sourceTree = "<group>"; };
 		9A6D1B2C2B04A8F80097FFD1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -27,8 +30,7 @@
 		9A6D1B312B04A8FA0097FFD1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9AF631C02B04AAD6002FCF4C /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		9AF631C22B04AC71002FCF4C /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
-		9AF631C42B04B343002FCF4C /* MonitorWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorWidget.swift; sourceTree = "<group>"; };
-		F947C1CF2B0C711B00D2AC62 /* ServiceWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServiceWidgetView.swift; path = "sap-project/ServiceWidgetView.swift"; sourceTree = SOURCE_ROOT; };
+		9AF631C42B04B343002FCF4C /* ServiceWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceWidget.swift; sourceTree = "<group>"; };
 		F947C1D12B0C71A900D2AC62 /* ServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerView.swift; sourceTree = "<group>"; };
 		F947C1D32B0C71E900D2AC62 /* WorkflowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,11 +70,12 @@
 				9A6D1B2E2B04A8FA0097FFD1 /* Assets.xcassets */,
 				9A6D1B302B04A8FA0097FFD1 /* Preview Content */,
 				9AF631C02B04AAD6002FCF4C /* DashboardView.swift */,
-				F947C1CF2B0C711B00D2AC62 /* ServiceWidgetView.swift */,
 				9AF631C22B04AC71002FCF4C /* ServicesView.swift */,
 				F947C1D12B0C71A900D2AC62 /* ServerView.swift */,
 				F947C1D32B0C71E900D2AC62 /* WorkflowView.swift */,
-				9AF631C42B04B343002FCF4C /* MonitorWidget.swift */,
+				9AF631C42B04B343002FCF4C /* ServiceWidget.swift */,
+				9A6C40A32B0C9351004D021E /* NewServiceWidgetView.swift */,
+				9A6C40A52B0C9E26004D021E /* PreconfiguredView.swift */,
 			);
 			path = "sap-project";
 			sourceTree = "<group>";
@@ -155,14 +158,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F947C1D02B0C711B00D2AC62 /* ServiceWidgetView.swift in Sources */,
 				9AF631C32B04AC71002FCF4C /* ServicesView.swift in Sources */,
-				9AF631C52B04B343002FCF4C /* MonitorWidget.swift in Sources */,
+				9AF631C52B04B343002FCF4C /* ServiceWidget.swift in Sources */,
 				F947C1D42B0C71E900D2AC62 /* WorkflowView.swift in Sources */,
+				9A6C40A62B0C9E26004D021E /* PreconfiguredView.swift in Sources */,
 				F947C1D22B0C71A900D2AC62 /* ServerView.swift in Sources */,
 				9A6D1B2D2B04A8F80097FFD1 /* ContentView.swift in Sources */,
 				9AF631C12B04AAD6002FCF4C /* DashboardView.swift in Sources */,
 				9A6D1B2B2B04A8F80097FFD1 /* sap_projectApp.swift in Sources */,
+				9A6C40A42B0C9351004D021E /* NewServiceWidgetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
