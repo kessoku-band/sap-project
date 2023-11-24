@@ -45,7 +45,7 @@ struct DashboardView: View {
 	
 	let columns = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
 	
-	@State var showingSection = true
+	@State private var showingSection: Bool = true
 	
 	var body: some View {
 		NavigationStack {

@@ -10,7 +10,7 @@ import SwiftUI
 struct ServiceWidgetLine {
     var indicator: String
     var value: String
-    var color: Int
+    var color: Int?
     
     func extractColor() -> Color {
         switch color {
@@ -24,6 +24,10 @@ struct ServiceWidgetLine {
             return Color(UIColor.label)
         }
     }
+	
+	func extractValue() -> String {
+		return self.value
+	}
 }
 
 struct ServiceWidget: View {
@@ -42,10 +46,10 @@ struct ServiceWidget: View {
             
             ForEach(lines, id: \.indicator) { line in
                 HStack {
-                    Text(line.indicator)
+					Text(line.indicator)
 						.foregroundStyle(.secondary)
 					Spacer()
-                    Text(line.value)
+					Text(line.extractValue())
                         .foregroundStyle(line.extractColor())
                 }
             }

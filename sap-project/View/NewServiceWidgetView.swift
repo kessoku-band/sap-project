@@ -32,7 +32,7 @@ struct NewServiceWidgetView: View {
 	
 	@State private var isShowingSheet: Bool = false
 	
-	@State private var lines: [ServiceWidgetLine] = []
+	@State private var lines: [ServiceWidgetLine] = [ServiceWidgetLine(indicator: "", value: ""), ServiceWidgetLine(indicator: "", value: ""), ServiceWidgetLine(indicator: "", value: "")]
 	
 	var body: some View {
 		NavigationStack {
