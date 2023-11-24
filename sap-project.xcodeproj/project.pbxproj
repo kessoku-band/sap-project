@@ -66,16 +66,10 @@
 			isa = PBXGroup;
 			children = (
 				9A6D1B2A2B04A8F80097FFD1 /* sap_projectApp.swift */,
-				9A6D1B2C2B04A8F80097FFD1 /* ContentView.swift */,
+				F9CF52E32B10932E00A3F140 /* Model and ViewModel */,
+				F9CF52E42B10934400A3F140 /* View */,
 				9A6D1B2E2B04A8FA0097FFD1 /* Assets.xcassets */,
 				9A6D1B302B04A8FA0097FFD1 /* Preview Content */,
-				9AF631C02B04AAD6002FCF4C /* DashboardView.swift */,
-				9AF631C22B04AC71002FCF4C /* ServicesView.swift */,
-				F947C1D12B0C71A900D2AC62 /* ServerView.swift */,
-				F947C1D32B0C71E900D2AC62 /* WorkflowView.swift */,
-				9AF631C42B04B343002FCF4C /* ServiceWidget.swift */,
-				9A6C40A32B0C9351004D021E /* NewServiceWidgetView.swift */,
-				9A6C40A52B0C9E26004D021E /* PreconfiguredView.swift */,
 			);
 			path = "sap-project";
 			sourceTree = "<group>";
@@ -86,6 +80,28 @@
 				9A6D1B312B04A8FA0097FFD1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F9CF52E32B10932E00A3F140 /* Model and ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9AF631C42B04B343002FCF4C /* ServiceWidget.swift */,
+			);
+			path = "Model and ViewModel";
+			sourceTree = "<group>";
+		};
+		F9CF52E42B10934400A3F140 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9A6D1B2C2B04A8F80097FFD1 /* ContentView.swift */,
+				9AF631C02B04AAD6002FCF4C /* DashboardView.swift */,
+				9AF631C22B04AC71002FCF4C /* ServicesView.swift */,
+				F947C1D12B0C71A900D2AC62 /* ServerView.swift */,
+				F947C1D32B0C71E900D2AC62 /* WorkflowView.swift */,
+				9A6C40A32B0C9351004D021E /* NewServiceWidgetView.swift */,
+				9A6C40A52B0C9E26004D021E /* PreconfiguredView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
