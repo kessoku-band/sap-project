@@ -36,18 +36,22 @@ struct ServiceWidget: View {
                 Text(title)
                     .font(.headline)
             }
+			
+			Spacer()
+				.frame(height: 10)
             
             ForEach(lines, id: \.indicator) { line in
                 HStack {
                     Text(line.indicator)
-                    Spacer()
+						.foregroundStyle(.secondary)
+					Spacer()
                     Text(line.value)
                         .foregroundStyle(line.extractColor())
                 }
             }
         }
         .frame(minWidth: 125, alignment: .topLeading)
-        .padding(EdgeInsets(top: 10, leading: 13, bottom: 10, trailing: 13))
+        .padding(EdgeInsets(top: 12, leading: 13, bottom: 12, trailing: 13))
         .background(Color(uiColor: .secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10.0))
     }

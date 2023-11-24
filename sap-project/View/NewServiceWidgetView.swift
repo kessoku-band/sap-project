@@ -57,9 +57,11 @@ struct NewServiceWidgetView: View {
 					}
 					.sheet(isPresented: $isShowingSheet, content: {
 						NavigationStack {
-							List{
-								NavigationLink("Docker") {
-									PreconfiguredView(title: "Docker", lines: $lines)
+							List {
+								Section(header: Text("Preconfigured Services"), footer: Text("Using preconfigured services will automatically fill in all required parameters. Some may require additional parameters.")) {
+									NavigationLink("Docker") {
+										PreconfiguredView(title: "Docker", lines: $lines, isShowingSheet: $isShowingSheet)
+									}
 								}
 							}
 						}

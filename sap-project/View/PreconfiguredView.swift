@@ -10,6 +10,7 @@ import SwiftUI
 struct PreconfiguredView: View {
 	let title: String
 	@Binding var lines: [ServiceWidgetLine]
+	@Binding var isShowingSheet: Bool
 	
 	var body: some View {
 		NavigationStack {
@@ -19,6 +20,8 @@ struct PreconfiguredView: View {
 						ServiceWidgetLine(indicator: "running", value: "2 cont.", color: 0),
 						ServiceWidgetLine(indicator: "exited", value: "2 exited", color: 1)
 					]
+					
+					isShowingSheet = false
 				}
 			}
 			.navigationTitle(title)
@@ -28,5 +31,5 @@ struct PreconfiguredView: View {
 }
 
 #Preview {
-	PreconfiguredView(title: "Docker", lines: .constant([]))
+	PreconfiguredView(title: "Docker", lines: .constant([]), isShowingSheet: .constant(true))
 }
