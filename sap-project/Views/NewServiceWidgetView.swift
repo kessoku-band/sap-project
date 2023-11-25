@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ServiceWidgetLineFieldsView: View {
 	@Binding var line: ServiceWidgetLine
@@ -16,11 +17,11 @@ struct ServiceWidgetLineFieldsView: View {
 				.multilineTextAlignment(.trailing)
 		}
 		LabeledContent("Value") {
-			TextField("Value", text: $line.value)
+			TextField("Value", text: $line.evalValue)
 				.multilineTextAlignment(.trailing)
 		}
 		LabeledContent("Color") {
-			TextField("Color", value: $line.color, formatter: NumberFormatter())
+			TextField("Color", text: $line.evalColor)
 				.multilineTextAlignment(.trailing)
 		}
 	}
@@ -32,7 +33,7 @@ struct NewServiceWidgetView: View {
 	
 	@State private var isShowingSheet: Bool = false
 	
-	@State private var lines: [ServiceWidgetLine] = []
+	@State private var lines: [ServiceWidgetLine] = [ServiceWidgetLine(indicator: "", evalValue: "", evalColor: ""), ServiceWidgetLine(indicator: "", evalValue: "", evalColor: ""), ServiceWidgetLine(indicator: "", evalValue: "", evalColor: "")]
 	
 	var body: some View {
 		NavigationStack {
@@ -57,9 +58,11 @@ struct NewServiceWidgetView: View {
 					}
 					.sheet(isPresented: $isShowingSheet, content: {
 						NavigationStack {
-							List{
-								NavigationLink("Docker") {
-									PreconfiguredView(title: "Docker", lines: $lines)
+							List {
+								Section(header: Text("Preconfigured Services"), footer: Text("Using preconfigured services will automatically fill in all required parameters.")) {
+									NavigationLink("Docker") {
+										PreconfiguredView(title: "Docker", lines: $lines, isShowingSheet: $isShowingSheet)
+									}
 								}
 							}
 						}

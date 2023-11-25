@@ -12,8 +12,10 @@ struct ContentView: View {
 		TabView {
 			DashboardView()
 				.tabItem {
-					Label("Dashboard", systemImage: "server.rack")
+					Label("Dashboard", systemImage: "text.and.command.macwindow")
 				}
+			
+			
 			
 			ServicesView()
 				.tabItem {
