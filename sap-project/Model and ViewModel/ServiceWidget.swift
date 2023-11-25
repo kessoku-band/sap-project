@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ServiceWidget: View {
-    let title: String
+    let name: String
     @Binding var lines: [ServiceWidgetLine]
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(title)
+                Text(name)
                     .font(.headline)
             }
 			
@@ -45,5 +45,5 @@ let lines: [ServiceWidgetLine] = [
 ]
 
 #Preview {
-	ServiceWidget(title: "Docker", lines: .constant(lines))
+	ServiceWidget(name: "Docker", lines: .constant(lines))
 }

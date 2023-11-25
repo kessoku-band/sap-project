@@ -20,6 +20,8 @@
 		9AE80FC82B11A94B00C03A5E /* PrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE80FC72B11A94B00C03A5E /* PrivateKey.swift */; };
 		9AE80FCA2B11ACD400C03A5E /* PrivateKeyDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE80FC92B11ACD400C03A5E /* PrivateKeyDetailsView.swift */; };
 		9AEE1D312B11CE3A000D7EE4 /* ServiceWidgetLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE1D302B11CE3A000D7EE4 /* ServiceWidgetLine.swift */; };
+		9AEE1D352B1245F9000D7EE4 /* ServiceWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE1D342B1245F9000D7EE4 /* ServiceWidgetData.swift */; };
+		9AEE1D372B124A91000D7EE4 /* ServerWidgetGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE1D362B124A91000D7EE4 /* ServerWidgetGroup.swift */; };
 		9AF631C12B04AAD6002FCF4C /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF631C02B04AAD6002FCF4C /* DashboardView.swift */; };
 		9AF631C32B04AC71002FCF4C /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF631C22B04AC71002FCF4C /* ServicesView.swift */; };
 		9AF631C52B04B343002FCF4C /* ServiceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF631C42B04B343002FCF4C /* ServiceWidget.swift */; };
@@ -41,6 +43,8 @@
 		9AE80FC72B11A94B00C03A5E /* PrivateKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKey.swift; sourceTree = "<group>"; };
 		9AE80FC92B11ACD400C03A5E /* PrivateKeyDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyDetailsView.swift; sourceTree = "<group>"; };
 		9AEE1D302B11CE3A000D7EE4 /* ServiceWidgetLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceWidgetLine.swift; sourceTree = "<group>"; };
+		9AEE1D342B1245F9000D7EE4 /* ServiceWidgetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceWidgetData.swift; sourceTree = "<group>"; };
+		9AEE1D362B124A91000D7EE4 /* ServerWidgetGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerWidgetGroup.swift; sourceTree = "<group>"; };
 		9AF631C02B04AAD6002FCF4C /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		9AF631C22B04AC71002FCF4C /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		9AF631C42B04B343002FCF4C /* ServiceWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceWidget.swift; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 			children = (
 				9AE80FC72B11A94B00C03A5E /* PrivateKey.swift */,
 				9AEE1D302B11CE3A000D7EE4 /* ServiceWidgetLine.swift */,
+				9AEE1D342B1245F9000D7EE4 /* ServiceWidgetData.swift */,
+				9AEE1D362B124A91000D7EE4 /* ServerWidgetGroup.swift */,
 				9AE80FC02B11943B00C03A5E /* Server.swift */,
 			);
 			path = Models;
@@ -219,6 +225,7 @@
 				9AF631C32B04AC71002FCF4C /* ServicesView.swift in Sources */,
 				9AEE1D312B11CE3A000D7EE4 /* ServiceWidgetLine.swift in Sources */,
 				9AE80FCA2B11ACD400C03A5E /* PrivateKeyDetailsView.swift in Sources */,
+				9AEE1D352B1245F9000D7EE4 /* ServiceWidgetData.swift in Sources */,
 				9AE80FC62B11A86100C03A5E /* PrivateKeySelectionView.swift in Sources */,
 				9AF631C52B04B343002FCF4C /* ServiceWidget.swift in Sources */,
 				F947C1D42B0C71E900D2AC62 /* WorkflowView.swift in Sources */,
@@ -231,6 +238,7 @@
 				9A6D1B2B2B04A8F80097FFD1 /* sap_projectApp.swift in Sources */,
 				9A6C40A42B0C9351004D021E /* NewServiceWidgetView.swift in Sources */,
 				9AE80FC82B11A94B00C03A5E /* PrivateKey.swift in Sources */,
+				9AEE1D372B124A91000D7EE4 /* ServerWidgetGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

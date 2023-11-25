@@ -18,6 +18,38 @@
             endingLineNumber = "68"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "9B2C6F1D-8F70-4ED4-B345-68C6A968A051 - 50066e84789e0058"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "sap_project.PrivateKeySelectionView.body.getter : some"
+                  moduleName = "sap-project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brandonli/Documents/Repositories/sap-project/sap-project/Views/ServersView/PrivateKeySelectionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "778">
+               </Location>
+               <Location
+                  uuid = "9B2C6F1D-8F70-4ED4-B345-68C6A968A051 - ba23da63a932ea2e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in sap_project.PrivateKeySelectionView.body.getter : some"
+                  moduleName = "sap-project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brandonli/Documents/Repositories/sap-project/sap-project/Views/ServersView/PrivateKeySelectionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "81">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

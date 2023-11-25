@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SectionHeader: View {
 	@State var title: String
@@ -37,34 +38,26 @@ struct SectionHeader: View {
 
 
 struct DashboardView: View {
-	let lines: [ServiceWidgetLine] = [
-		ServiceWidgetLine(indicator: "running", evalValue: "2 cont.", evalColor: ""),
-		ServiceWidgetLine(indicator: "exited", evalValue: "2 exited", evalColor: "")
-	]
+	@Query var fetchedServiceWidgetGroups: [ServerWidgetGroup]
 	
 	let columns = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
-	
-	@State private var showingSection: Bool = true
 	
 	var body: some View {
 		NavigationStack {
 			List {
-				Section(header: SectionHeader(
-						title: "Server 1",
-						isOn: $showingSection,
+				ForEach(fetchedServiceWidgetGroups) { serverWidget in
+					Section(header: SectionHeader(
+						title: serverWidget.name,
+						isOn: Bindable(serverWidget).isOn,
 						onLabel: "Hide",
 						offLabel: "Show"
-					)
-				) {
-					if showingSection {
-						LazyVGrid(columns: columns, spacing: 11)  {
-							ServiceWidget(title: "Docker", lines: .constant(lines))
-							ServiceWidget(title: "Docker", lines: .constant(lines))
-							ServiceWidget(title: "Docker", lines: .constant(lines))
-							ServiceWidget(title: "Docker", lines: .constant(lines))
-							ServiceWidget(title: "Docker", lines: .constant(lines))
-							
-							// And yes we can proceed to create a persisting plist for that stack of ServiceWidgets
+					)) {
+						if serverWidget.isOn {
+							LazyVGrid(columns: columns, spacing: 11)  {
+								ForEach(serverWidget.serviceWidgetDatas) { serverWidgetData in
+									ServiceWidget(name: serverWidgetData.name, lines: Bindable(serverWidgetData).serviceWidgetLines)
+								}
+							}
 						}
 					}
 				}

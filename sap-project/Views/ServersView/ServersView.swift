@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ServersView: View {
-	@Query() var servers: [Server]
+	@Query var servers: [Server]
 	@State private var showNewServerSheet = false
 	
 	@State private var hostname: String = ""

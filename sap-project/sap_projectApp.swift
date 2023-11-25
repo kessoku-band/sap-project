@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct sap_projectApp: App {
@@ -15,6 +16,7 @@ struct sap_projectApp: App {
 				.modelContainer(for: [
 					PrivateKey.self,
 					ServiceWidgetLine.self,
+					ServiceWidgetData.self,
 					Server.self
 				])
 		}
