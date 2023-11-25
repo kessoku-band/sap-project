@@ -8,7 +8,8 @@
 import Foundation
 import SwiftData
 
-struct ServiceWidgetLine {
+@Model
+final class ServiceWidgetLine {
 	var indicator: String
 	var evalValue: String
 	var evalColor: String

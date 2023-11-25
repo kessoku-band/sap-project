@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ServersView: View {
-	@State private var servers: [Server] = []
+	@Query() var servers: [Server]
 	@State private var showNewServerSheet = false
 	
 	@State private var hostname: String = ""
@@ -16,12 +17,11 @@ struct ServersView: View {
 	
 	let authMethods: [String] = ["Private Key", "Password"]
 	@State private var selectedAuthMethod = "Private Key"
-	
 	@State private var selectedKeys: Set<UUID> = []
 	
 	var body: some View {
 		NavigationStack {
-			List($servers) { $server in
+			List(servers) { server in
 				
 			}
 			.navigationTitle("Servers")

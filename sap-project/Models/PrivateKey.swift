@@ -6,9 +6,17 @@
 //
 
 import Foundation
+import SwiftData
 
-struct PrivateKey: Identifiable, Codable {
+@Model
+final class PrivateKey {
 	var id = UUID()
 	var name: String
 	var keyType: String
+	
+	init(id: UUID = UUID(), name: String, keyType: String) {
+		self.id = id
+		self.name = name
+		self.keyType = keyType
+	}
 }

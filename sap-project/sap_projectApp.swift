@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct sap_projectApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
+	var body: some Scene {
+		WindowGroup {
+			ContentView()
+				.modelContainer(for: [
+					PrivateKey.self,
+					ServiceWidgetLine.self,
+					Server.self
+				])
+		}
+	}
 }
