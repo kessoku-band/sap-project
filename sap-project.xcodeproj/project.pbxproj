@@ -13,6 +13,12 @@
 		9A6D1B2D2B04A8F80097FFD1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6D1B2C2B04A8F80097FFD1 /* ContentView.swift */; };
 		9A6D1B2F2B04A8FA0097FFD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A6D1B2E2B04A8FA0097FFD1 /* Assets.xcassets */; };
 		9A6D1B322B04A8FA0097FFD1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A6D1B312B04A8FA0097FFD1 /* Preview Assets.xcassets */; };
+		9AE80FBF2B118F5800C03A5E /* ServersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE80FBE2B118F5800C03A5E /* ServersView.swift */; };
+		9AE80FC12B11943B00C03A5E /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE80FC02B11943B00C03A5E /* Server.swift */; };
+		9AE80FC42B119FA700C03A5E /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 9AE80FC32B119FA700C03A5E /* KeychainAccess */; };
+		9AE80FC62B11A86100C03A5E /* PrivateKeySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE80FC52B11A86100C03A5E /* PrivateKeySelectionView.swift */; };
+		9AE80FC82B11A94B00C03A5E /* PrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE80FC72B11A94B00C03A5E /* PrivateKey.swift */; };
+		9AE80FCA2B11ACD400C03A5E /* PrivateKeyDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE80FC92B11ACD400C03A5E /* PrivateKeyDetailsView.swift */; };
 		9AF631C12B04AAD6002FCF4C /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF631C02B04AAD6002FCF4C /* DashboardView.swift */; };
 		9AF631C32B04AC71002FCF4C /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF631C22B04AC71002FCF4C /* ServicesView.swift */; };
 		9AF631C52B04B343002FCF4C /* ServiceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF631C42B04B343002FCF4C /* ServiceWidget.swift */; };
@@ -28,6 +34,11 @@
 		9A6D1B2C2B04A8F80097FFD1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9A6D1B2E2B04A8FA0097FFD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A6D1B312B04A8FA0097FFD1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9AE80FBE2B118F5800C03A5E /* ServersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersView.swift; sourceTree = "<group>"; };
+		9AE80FC02B11943B00C03A5E /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		9AE80FC52B11A86100C03A5E /* PrivateKeySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeySelectionView.swift; sourceTree = "<group>"; };
+		9AE80FC72B11A94B00C03A5E /* PrivateKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKey.swift; sourceTree = "<group>"; };
+		9AE80FC92B11ACD400C03A5E /* PrivateKeyDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyDetailsView.swift; sourceTree = "<group>"; };
 		9AF631C02B04AAD6002FCF4C /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		9AF631C22B04AC71002FCF4C /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		9AF631C42B04B343002FCF4C /* ServiceWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceWidget.swift; sourceTree = "<group>"; };
@@ -40,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AE80FC42B119FA700C03A5E /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +112,11 @@
 				F947C1D32B0C71E900D2AC62 /* WorkflowView.swift */,
 				9A6C40A32B0C9351004D021E /* NewServiceWidgetView.swift */,
 				9A6C40A52B0C9E26004D021E /* PreconfiguredView.swift */,
+				9AE80FBE2B118F5800C03A5E /* ServersView.swift */,
+				9AE80FC52B11A86100C03A5E /* PrivateKeySelectionView.swift */,
+				9AE80FC92B11ACD400C03A5E /* PrivateKeyDetailsView.swift */,
+				9AE80FC72B11A94B00C03A5E /* PrivateKey.swift */,
+				9AE80FC02B11943B00C03A5E /* Server.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -120,6 +137,9 @@
 			dependencies = (
 			);
 			name = "sap-project";
+			packageProductDependencies = (
+				9AE80FC32B119FA700C03A5E /* KeychainAccess */,
+			);
 			productName = "sap-project";
 			productReference = 9A6D1B272B04A8F80097FFD1 /* sap-project.app */;
 			productType = "com.apple.product-type.application";
@@ -148,6 +168,9 @@
 				Base,
 			);
 			mainGroup = 9A6D1B1E2B04A8F80097FFD1;
+			packageReferences = (
+				9AE80FC22B119FA700C03A5E /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
 			productRefGroup = 9A6D1B282B04A8F80097FFD1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -175,14 +198,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AF631C32B04AC71002FCF4C /* ServicesView.swift in Sources */,
+				9AE80FCA2B11ACD400C03A5E /* PrivateKeyDetailsView.swift in Sources */,
+				9AE80FC62B11A86100C03A5E /* PrivateKeySelectionView.swift in Sources */,
 				9AF631C52B04B343002FCF4C /* ServiceWidget.swift in Sources */,
 				F947C1D42B0C71E900D2AC62 /* WorkflowView.swift in Sources */,
 				9A6C40A62B0C9E26004D021E /* PreconfiguredView.swift in Sources */,
 				F947C1D22B0C71A900D2AC62 /* ServerView.swift in Sources */,
 				9A6D1B2D2B04A8F80097FFD1 /* ContentView.swift in Sources */,
+				9AE80FC12B11943B00C03A5E /* Server.swift in Sources */,
 				9AF631C12B04AAD6002FCF4C /* DashboardView.swift in Sources */,
+				9AE80FBF2B118F5800C03A5E /* ServersView.swift in Sources */,
 				9A6D1B2B2B04A8F80097FFD1 /* sap_projectApp.swift in Sources */,
 				9A6C40A42B0C9351004D021E /* NewServiceWidgetView.swift in Sources */,
+				9AE80FC82B11A94B00C03A5E /* PrivateKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +416,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9AE80FC22B119FA700C03A5E /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9AE80FC32B119FA700C03A5E /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9AE80FC22B119FA700C03A5E /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9A6D1B1F2B04A8F80097FFD1 /* Project object */;
 }

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct WorkflowView: View {
-       
    var body: some View {
        NavigationStack {
            Text("New Workflow")

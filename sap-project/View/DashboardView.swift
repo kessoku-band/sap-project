@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SectionHeader: View {
-	
 	@State var title: String
 	@Binding var isOn: Bool
 	@State var onLabel: String
