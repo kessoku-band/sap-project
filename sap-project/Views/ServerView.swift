@@ -17,7 +17,7 @@ struct ServerView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Configured workflows")) {
+                Section(header: Text("Configured workflows"), footer: Text("Workflows will be added as bash scripts, and automated with cron.")) {
                     Button(action: {logNewWorkflow()}) {Text("Refresh SSL certificates").foregroundStyle(.black)}
                     Button(action: {logNewWorkflow()}) {Text("Push to docker registry").foregroundStyle(.black)}
                     Button(action: {logNewWorkflow()}) {Text("Upgrade packages").foregroundStyle(.black)}
