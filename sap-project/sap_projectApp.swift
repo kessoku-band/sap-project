@@ -17,6 +17,7 @@ struct sap_projectApp: App {
 					PrivateKey.self,
 					ServiceWidgetLine.self,
 					ServiceWidgetData.self,
+					ServerWidgetGroup.self,
 					Server.self
 				])
 		}
