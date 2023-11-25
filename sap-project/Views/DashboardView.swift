@@ -44,6 +44,8 @@ struct DashboardView: View {
 	
 	var body: some View {
 		NavigationStack {
+			NoItemsView(enabled: fetchedServiceWidgetGroups.isEmpty, name: "Configured Widgets")
+			
 			List {
 				ForEach(fetchedServiceWidgetGroups) { serverWidget in
 					Section(header: SectionHeader(
@@ -65,7 +67,6 @@ struct DashboardView: View {
 			.listStyle(.inset)
 			.headerProminence(.increased)
 			.navigationTitle("Dashboard")
-			
 		}
 	}
 }

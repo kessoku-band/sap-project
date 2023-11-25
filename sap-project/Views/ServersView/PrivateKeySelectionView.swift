@@ -41,6 +41,8 @@ struct PrivateKeySelectionView: View {
 	
 	var body: some View {
 		NavigationStack {
+			NoItemsView(enabled: fetchedKeys.isEmpty, name: "Configured Private Keys")
+			
 			List($keys, editActions: .all) { key in
 				PrivateKeyLabelView(selectedKeys: $selectedKeys, key: key)
 			}

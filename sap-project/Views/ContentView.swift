@@ -16,6 +16,11 @@ struct ContentView: View {
 					Label("Dashboard", systemImage: "text.and.command.macwindow")
 				}
 			
+			ServersView()
+				.tabItem {
+					Label("Servers", systemImage: "server.rack")
+				}
+			
 			ServicesView()
 				.tabItem {
 					Label("Services", systemImage: "mosaic")

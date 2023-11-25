@@ -22,6 +22,9 @@
 		9AEE1D312B11CE3A000D7EE4 /* ServiceWidgetLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE1D302B11CE3A000D7EE4 /* ServiceWidgetLine.swift */; };
 		9AEE1D352B1245F9000D7EE4 /* ServiceWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE1D342B1245F9000D7EE4 /* ServiceWidgetData.swift */; };
 		9AEE1D372B124A91000D7EE4 /* ServerWidgetGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE1D362B124A91000D7EE4 /* ServerWidgetGroup.swift */; };
+		9AEE1D3B2B127DCD000D7EE4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE1D3A2B127DCD000D7EE4 /* String.swift */; };
+		9AEE1D3D2B127FD9000D7EE4 /* NoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE1D3C2B127FD9000D7EE4 /* NoItemsView.swift */; };
+		9AEE1D422B128167000D7EE4 /* VerifyConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE1D412B128167000D7EE4 /* VerifyConnection.swift */; };
 		9AF631C12B04AAD6002FCF4C /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF631C02B04AAD6002FCF4C /* DashboardView.swift */; };
 		9AF631C32B04AC71002FCF4C /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF631C22B04AC71002FCF4C /* ServicesView.swift */; };
 		9AF631C52B04B343002FCF4C /* ServiceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF631C42B04B343002FCF4C /* ServiceWidget.swift */; };
@@ -45,6 +48,9 @@
 		9AEE1D302B11CE3A000D7EE4 /* ServiceWidgetLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceWidgetLine.swift; sourceTree = "<group>"; };
 		9AEE1D342B1245F9000D7EE4 /* ServiceWidgetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceWidgetData.swift; sourceTree = "<group>"; };
 		9AEE1D362B124A91000D7EE4 /* ServerWidgetGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerWidgetGroup.swift; sourceTree = "<group>"; };
+		9AEE1D3A2B127DCD000D7EE4 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		9AEE1D3C2B127FD9000D7EE4 /* NoItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemsView.swift; sourceTree = "<group>"; };
+		9AEE1D412B128167000D7EE4 /* VerifyConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyConnection.swift; sourceTree = "<group>"; };
 		9AF631C02B04AAD6002FCF4C /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		9AF631C22B04AC71002FCF4C /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		9AF631C42B04B343002FCF4C /* ServiceWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceWidget.swift; sourceTree = "<group>"; };
@@ -83,9 +89,11 @@
 		9A6D1B292B04A8F80097FFD1 /* sap-project */ = {
 			isa = PBXGroup;
 			children = (
+				9AEE1D3E2B12813F000D7EE4 /* SSH */,
+				9AEE1D392B127DB8000D7EE4 /* Extensions */,
 				9A6D1B2A2B04A8F80097FFD1 /* sap_projectApp.swift */,
 				9AEE1D2E2B11CA57000D7EE4 /* Models */,
-				F9CF52E32B10932E00A3F140 /* Model and ViewModel */,
+				F9CF52E32B10932E00A3F140 /* ViewModels */,
 				F9CF52E42B10934400A3F140 /* Views */,
 				9A6D1B2E2B04A8FA0097FFD1 /* Assets.xcassets */,
 				9A6D1B302B04A8FA0097FFD1 /* Preview Content */,
@@ -104,10 +112,8 @@
 		9AEE1D2E2B11CA57000D7EE4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9AEE1D382B1264FD000D7EE4 /* ServerWidget */,
 				9AE80FC72B11A94B00C03A5E /* PrivateKey.swift */,
-				9AEE1D302B11CE3A000D7EE4 /* ServiceWidgetLine.swift */,
-				9AEE1D342B1245F9000D7EE4 /* ServiceWidgetData.swift */,
-				9AEE1D362B124A91000D7EE4 /* ServerWidgetGroup.swift */,
 				9AE80FC02B11943B00C03A5E /* Server.swift */,
 			);
 			path = Models;
@@ -123,12 +129,39 @@
 			path = ServersView;
 			sourceTree = "<group>";
 		};
-		F9CF52E32B10932E00A3F140 /* Model and ViewModel */ = {
+		9AEE1D382B1264FD000D7EE4 /* ServerWidget */ = {
+			isa = PBXGroup;
+			children = (
+				9AEE1D302B11CE3A000D7EE4 /* ServiceWidgetLine.swift */,
+				9AEE1D342B1245F9000D7EE4 /* ServiceWidgetData.swift */,
+				9AEE1D362B124A91000D7EE4 /* ServerWidgetGroup.swift */,
+			);
+			path = ServerWidget;
+			sourceTree = "<group>";
+		};
+		9AEE1D392B127DB8000D7EE4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9AEE1D3A2B127DCD000D7EE4 /* String.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9AEE1D3E2B12813F000D7EE4 /* SSH */ = {
+			isa = PBXGroup;
+			children = (
+				9AEE1D412B128167000D7EE4 /* VerifyConnection.swift */,
+			);
+			path = SSH;
+			sourceTree = "<group>";
+		};
+		F9CF52E32B10932E00A3F140 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				9AF631C42B04B343002FCF4C /* ServiceWidget.swift */,
+				9AEE1D3C2B127FD9000D7EE4 /* NoItemsView.swift */,
 			);
-			path = "Model and ViewModel";
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		F9CF52E42B10934400A3F140 /* Views */ = {
@@ -228,12 +261,15 @@
 				9AEE1D352B1245F9000D7EE4 /* ServiceWidgetData.swift in Sources */,
 				9AE80FC62B11A86100C03A5E /* PrivateKeySelectionView.swift in Sources */,
 				9AF631C52B04B343002FCF4C /* ServiceWidget.swift in Sources */,
+				9AEE1D422B128167000D7EE4 /* VerifyConnection.swift in Sources */,
 				F947C1D42B0C71E900D2AC62 /* WorkflowView.swift in Sources */,
 				9A6C40A62B0C9E26004D021E /* PreconfiguredView.swift in Sources */,
 				F947C1D22B0C71A900D2AC62 /* ServerView.swift in Sources */,
 				9A6D1B2D2B04A8F80097FFD1 /* ContentView.swift in Sources */,
 				9AE80FC12B11943B00C03A5E /* Server.swift in Sources */,
 				9AF631C12B04AAD6002FCF4C /* DashboardView.swift in Sources */,
+				9AEE1D3D2B127FD9000D7EE4 /* NoItemsView.swift in Sources */,
+				9AEE1D3B2B127DCD000D7EE4 /* String.swift in Sources */,
 				9AE80FBF2B118F5800C03A5E /* ServersView.swift in Sources */,
 				9A6D1B2B2B04A8F80097FFD1 /* sap_projectApp.swift in Sources */,
 				9A6C40A42B0C9351004D021E /* NewServiceWidgetView.swift in Sources */,
