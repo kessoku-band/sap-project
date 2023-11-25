@@ -35,10 +35,25 @@ struct PrivateKeyLabelView: View {
 struct NewPrivateKeyView: View {
 	@Environment(\.dismiss) var dismiss
 	
+	@State private var keyText: String = ""
+	
+	let keyTypes = ["rsa", "ed25519", "ed25519-sk", "dsa", "ecdsa", "ecdsa-sk"]
+	@State private var selectedKeyType: String = "rsa"
+	
 	var body: some View {
 		NavigationStack {
 			Form {
+				Section("Private Key") {
+					TextField("Required", text: $keyText)
+				}
 				
+				Section {
+					Picker("Key Type", selection: $selectedKeyType) {
+						ForEach(keyTypes, id: \.self) {
+							Text($0)
+						}
+					}
+				}
 			}
 			.navigationTitle("New Private Key")
 			.navigationBarTitleDisplayMode(.inline)
