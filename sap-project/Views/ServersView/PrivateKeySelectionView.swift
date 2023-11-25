@@ -32,6 +32,34 @@ struct PrivateKeyLabelView: View {
 	}
 }
 
+struct NewPrivateKeyView: View {
+	@Environment(\.dismiss) var dismiss
+	
+	var body: some View {
+		NavigationStack {
+			Form {
+				
+			}
+			.navigationTitle("New Private Key")
+			.navigationBarTitleDisplayMode(.inline)
+			.toolbar {
+				ToolbarItem(placement: .cancellationAction) {
+					Button("Cancel", role: .cancel) {
+						dismiss()
+					}
+				}
+				
+				ToolbarItem(placement: .confirmationAction) {
+					Button("Done") {
+						dismiss()
+					}
+				}
+				
+			}
+		}
+	}
+}
+
 struct PrivateKeySelectionView: View {
 	@Query var fetchedKeys: [PrivateKey]
 	@Binding var selectedKeys: Set<UUID>
@@ -61,11 +89,9 @@ struct PrivateKeySelectionView: View {
 					}
 				}
 			}
-			.sheet(isPresented: $showNewPrivateKeySheet, content: {
-				Form {
-					
-				}
-			})
+			.sheet(isPresented: $showNewPrivateKeySheet) {
+				NewPrivateKeyView()
+			}
 		}
 		.onAppear() {
 			keys = fetchedKeys
