@@ -8,35 +8,38 @@
 import SwiftUI
 
 struct ServerView: View {
-   var body: some View {
-       NavigationStack() {
-           List {
-               Section(header: Text("Configured workflows")) {
-                   Text("Refresh SSL Certificates")
-                   Text("Push to docker registry")
-                   Text("Upgrade packages")
-                   Button {
-                       print("New Workflow")
-                   } label: {
-                       Text("Add new workflow")
-                   }
-               }
-			   
-               Section(header: Text("Service widgets")) {
-                   Text("Docker")
-                   Text("systemd")
-                   Button {
-                       
-                   } label: {
-                       Text("Add service widget")
-                   }
-               }
-           }
-           .navigationTitle("Server 1")
-       }
-   }
+    
+    // Function to handle button tap and log to the console
+    func logNewWorkflow() {
+        print("New Workflow")
+    }
+    
+    var body: some View {
+        NavigationView {
+            List {
+                Section(header: Text("Configured workflows")) {
+                    Button(action: {logNewWorkflow()}) {Text("Refresh SSL certificates").foregroundStyle(.black)}
+                    Button(action: {logNewWorkflow()}) {Text("Push to docker registry").foregroundStyle(.black)}
+                    Button(action: {logNewWorkflow()}) {Text("Upgrade packages").foregroundStyle(.black)}
+                    Button(action: {logNewWorkflow()}) {
+                        Label("Add new workflow", systemImage: "plus")
+                    }
+                }
+                Section(header: Text("Service widgets")) {
+                    Button(action: {logNewWorkflow()}) {Text("Docker").foregroundStyle(.black)}
+                    Button(action: {logNewWorkflow()}) {Text("systemd").foregroundStyle(.black)}
+                    Button(action: {logNewWorkflow()}) {
+                        Label("Add service widget", systemImage: "plus")
+                    }
+                }
+            }
+            .navigationTitle("Server 1")
+        }
+    }
 }
 
-#Preview {
-    ServerView()
+struct ServerView_Previews: PreviewProvider {
+    static var previews: some View {
+        ServerView()
+    }
 }
