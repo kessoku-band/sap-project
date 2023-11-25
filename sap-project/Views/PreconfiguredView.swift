@@ -17,8 +17,8 @@ struct PreconfiguredView: View {
 			Form {
 				Button("Test") {
 					lines = [
-						ServiceWidgetLine(indicator: "running", value: "2 cont.", color: 0),
-						ServiceWidgetLine(indicator: "exited", value: "2 exited", color: 1)
+						ServiceWidgetLine(indicator: "running", evalValue: "2 cont.", evalColor: "echo 0"),
+						ServiceWidgetLine(indicator: "exited", evalValue: "2 exited", evalColor: "echo 0")
 					]
 					
 					isShowingSheet = false

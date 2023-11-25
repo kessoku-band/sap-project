@@ -38,8 +38,8 @@ struct SectionHeader: View {
 
 struct DashboardView: View {
 	let lines: [ServiceWidgetLine] = [
-		ServiceWidgetLine(indicator: "running", value: "2 cont.", color: 0),
-		ServiceWidgetLine(indicator: "exited", value: "2 exited", color: 1)
+		ServiceWidgetLine(indicator: "running", evalValue: "2 cont.", evalColor: ""),
+		ServiceWidgetLine(indicator: "exited", evalValue: "2 exited", evalColor: "")
 	]
 	
 	let columns = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
@@ -58,11 +58,11 @@ struct DashboardView: View {
 				) {
 					if showingSection {
 						LazyVGrid(columns: columns, spacing: 11)  {
-							ServiceWidget(title: "Docker", lines: lines)
-							ServiceWidget(title: "Docker", lines: lines)
-							ServiceWidget(title: "Docker", lines: lines)
-							ServiceWidget(title: "Docker", lines: lines)
-							ServiceWidget(title: "Docker", lines: lines)
+							ServiceWidget(title: "Docker", lines: .constant(lines))
+							ServiceWidget(title: "Docker", lines: .constant(lines))
+							ServiceWidget(title: "Docker", lines: .constant(lines))
+							ServiceWidget(title: "Docker", lines: .constant(lines))
+							ServiceWidget(title: "Docker", lines: .constant(lines))
 							
 							// And yes we can proceed to create a persisting plist for that stack of ServiceWidgets
 						}

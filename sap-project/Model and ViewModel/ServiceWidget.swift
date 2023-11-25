@@ -7,32 +7,9 @@
 
 import SwiftUI
 
-struct ServiceWidgetLine {
-    var indicator: String
-    var value: String
-    var color: Int?
-    
-    func extractColor() -> Color {
-        switch color {
-        case 0:
-            return Color(UIColor.label)
-        case 1:
-            return Color.red
-        case 2:
-            return Color.green
-        default:
-            return Color(UIColor.label)
-        }
-    }
-	
-	func extractValue() -> String {
-		return self.value
-	}
-}
-
 struct ServiceWidget: View {
     let title: String
-    let lines: [ServiceWidgetLine]
+    @Binding var lines: [ServiceWidgetLine]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -44,13 +21,14 @@ struct ServiceWidget: View {
 			Spacer()
 				.frame(height: 10)
             
-            ForEach(lines, id: \.indicator) { line in
+			ForEach($lines, id: \.indicator) { $line in
                 HStack {
 					Text(line.indicator)
 						.foregroundStyle(.secondary)
 					Spacer()
-					Text(line.extractValue())
-                        .foregroundStyle(line.extractColor())
+					Text(line.evalValue)
+					// 	.foregroundStyle(line.evalColor)
+						.foregroundStyle(Color(UIColor.label))
                 }
             }
         }
@@ -62,10 +40,10 @@ struct ServiceWidget: View {
 }
 
 let lines: [ServiceWidgetLine] = [
-    ServiceWidgetLine(indicator: "running", value: "2 cont.", color: 0),
-    ServiceWidgetLine(indicator: "exited", value: "2 exited", color: 1)
+    ServiceWidgetLine(indicator: "running", evalValue: "2 cont.", evalColor: ""),
+    ServiceWidgetLine(indicator: "exited", evalValue: "2 exited", evalColor: "")
 ]
 
 #Preview {
-    ServiceWidget(title: "Docker", lines: lines)
+	ServiceWidget(title: "Docker", lines: .constant(lines))
 }

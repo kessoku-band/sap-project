@@ -34,7 +34,7 @@ struct PrivateKeySelectionView: View {
 			.navigationTitle("Private Keys")
 			.navigationBarTitleDisplayMode(.inline)
 			.toolbar {
-				ToolbarItem(placement: .topBarLeading) {
+				ToolbarItem(placement: .topBarTrailing) {
 					EditButton()
 				}
 				
