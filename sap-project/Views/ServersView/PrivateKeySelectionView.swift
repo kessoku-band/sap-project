@@ -7,14 +7,16 @@
 
 import SwiftUI
 import SwiftData
+import KeychainAccess
 
 struct PrivateKeyLabelView: View {
 	@Binding var selectedKeys: Set<UUID>
 	@Binding var key: PrivateKey
+	@Binding var keys: [PrivateKey]
 	
 	var body: some View {
 		NavigationLink {
-			PrivateKeyDetailsView(key: $key)
+			PrivateKeyEditor(key: key, keys: $keys)
 		} label: {
 			HStack {
 				Image(systemName: selectedKeys.contains(key.id) ? "checkmark.circle.fill" : "circle")
@@ -32,15 +34,24 @@ struct PrivateKeyLabelView: View {
 	}
 }
 
-struct NewPrivateKeyView: View {
+struct PrivateKeyEditor: View {
+	let key: PrivateKey?
+	
+	let keychain = Keychain(service: "com.simonfalke.privatekeys")
+	
+	private var editorTitle: String {
+		key == nil ? "New Private Key" : "Edit Private Key"
+	}
+	
 	@Environment(\.dismiss) var dismiss
+	@Environment(\.modelContext) private var modelContext
 	
 	@Binding var keys: [PrivateKey]
 	
+	let keyTypes = ["rsa", "ed25519", "ed25519-sk", "dsa", "ecdsa", "ecdsa-sk"]
+	
 	@State private var keyName: String = ""
 	@State private var keyText: String = ""
-	
-	let keyTypes = ["rsa", "ed25519", "ed25519-sk", "dsa", "ecdsa", "ecdsa-sk"]
 	@State private var selectedKeyType: String = "rsa"
 	
 	var body: some View {
@@ -49,14 +60,13 @@ struct NewPrivateKeyView: View {
 				Section("Info") {
 					LabeledContent("Key Name") {
 						TextField("Required", text: $keyName)
+							.multilineTextAlignment(.trailing)
 					}
 				}
 				
 				Section("Private Key") {
 					TextField("Required", text: $keyText)
-				}
-				
-				Section {
+					
 					Picker("Key Type", selection: $selectedKeyType) {
 						ForEach(keyTypes, id: \.self) {
 							Text($0)
@@ -81,23 +91,48 @@ struct NewPrivateKeyView: View {
 				}
 				
 			}
+			.onAppear {
+				if let key {
+					keyName = key.name
+					selectedKeyType = key.keyType
+					keyText = keychain[key.id.uuidString] ?? ""
+				}
+			}
 		}
 	}
 	
 	private func save() {
-		let newPrivateKey = PrivateKey(
-			name: keyName,
-			keyType: selectedKeyType
-		)
+		if let key {
+			key.name = keyName
+			key.keyType = selectedKeyType
+			keychain[key.id.uuidString] = keyText
+		} else {
+			let newPrivateKey = PrivateKey(
+				name: keyName,
+				keyType: selectedKeyType
+			)
+			
+			keychain[newPrivateKey.id.uuidString] = keyText
+			
+			modelContext.insert(newPrivateKey)
+			
+			keys.append(newPrivateKey)
+		}
 	}
 }
 
 struct PrivateKeySelectionView: View {
+	@Environment(\.modelContext) private var modelContext
+	
 	@Query var fetchedKeys: [PrivateKey]
 	@Binding var selectedKeys: Set<UUID>
+	@Query var servers: [Server]
 	
 	@State var keys: [PrivateKey] = []
 	@State var showNewPrivateKeySheet: Bool = false
+	@State var showingAlert: Bool = false
+	@State var keyInUse: String = ""
+	@State var serversUsing: [String] = []
 	
 	@State var newKeyText: String = ""
 	@State var newKeyType: String = ""
@@ -106,8 +141,11 @@ struct PrivateKeySelectionView: View {
 		NavigationStack {
 			NoItemsView(enabled: fetchedKeys.isEmpty, name: "Configured Private Keys")
 			
-			List($keys, editActions: .all) { key in
-				PrivateKeyLabelView(selectedKeys: $selectedKeys, key: key)
+			List {
+				ForEach($keys) { key in
+					PrivateKeyLabelView(selectedKeys: $selectedKeys, key: key, keys: $keys)
+				}
+				.onDelete(perform: listDelete)
 			}
 			.navigationTitle("Private Keys")
 			.navigationBarTitleDisplayMode(.inline)
@@ -125,12 +163,38 @@ struct PrivateKeySelectionView: View {
 				}
 			}
 			.sheet(isPresented: $showNewPrivateKeySheet) {
-				NewPrivateKeyView(keys: $keys)
+				PrivateKeyEditor(key: nil, keys: $keys)
+			}
+			.alert("\(keyInUse) is currently in use by \(serversUsing.joinedFormatted())", isPresented: $showingAlert) {
+				Button("OK", role: .cancel) { }
+
 			}
 		}
 		.onAppear() {
 			keys = fetchedKeys
 		}
+	}
+	
+	private func listDelete(at offsets: IndexSet) {
+		for index in offsets {
+			if !keys[index].serversUsing.isEmpty {
+				keyInUse = keys[index].name
+				serversUsing = servers.filter { server in
+					keys[index].serversUsing.contains(server.id)
+				}
+				.map { $0.name }
+				showingAlert = true
+			} else {
+				modelContext.delete(keys[index])
+				selectedKeys.remove(keys[index].id)
+				
+				keys.remove(at: index)
+			}
+		}
+		
+		print(keys)
+		print(fetchedKeys)
+		print(selectedKeys)
 	}
 }
 
