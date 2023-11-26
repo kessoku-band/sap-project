@@ -13,7 +13,7 @@ final class PrivateKey {
 	var id = UUID()
 	var name: String
 	var keyType: String
-	var serversUsing: [UUID] = [UUID]()
+	var serversUsing: Set<UUID> = Set<UUID>()
 	
 	init(id: UUID = UUID(), name: String, keyType: String) {
 		self.id = id

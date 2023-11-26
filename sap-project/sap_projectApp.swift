@@ -15,6 +15,7 @@ struct sap_projectApp: App {
 			ContentView()
 				.modelContainer(for: [
 					PrivateKey.self,
+					Password.self,
 					ServiceWidgetLine.self,
 					ServiceWidgetData.self,
 					ServerWidgetGroup.self,

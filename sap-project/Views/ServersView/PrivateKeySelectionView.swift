@@ -54,6 +54,8 @@ struct PrivateKeyEditor: View {
 	@State private var keyText: String = ""
 	@State private var selectedKeyType: String = "rsa"
 	
+	@State private var editing: Bool = false
+	
 	var body: some View {
 		NavigationStack {
 			Form {
@@ -77,9 +79,11 @@ struct PrivateKeyEditor: View {
 			.navigationTitle("New Private Key")
 			.navigationBarTitleDisplayMode(.inline)
 			.toolbar {
-				ToolbarItem(placement: .cancellationAction) {
-					Button("Cancel", role: .cancel) {
-						dismiss()
+				if !editing {
+					ToolbarItem(placement: .cancellationAction) {
+						Button("Cancel", role: .cancel) {
+							dismiss()
+						}
 					}
 				}
 				
@@ -96,6 +100,8 @@ struct PrivateKeyEditor: View {
 					keyName = key.name
 					selectedKeyType = key.keyType
 					keyText = keychain[key.id.uuidString] ?? ""
+					
+					editing = true
 				}
 			}
 		}
@@ -146,6 +152,7 @@ struct PrivateKeySelectionView: View {
 					PrivateKeyLabelView(selectedKeys: $selectedKeys, key: key, keys: $keys)
 				}
 				.onDelete(perform: listDelete)
+				.onMove(perform: onMove)
 			}
 			.navigationTitle("Private Keys")
 			.navigationBarTitleDisplayMode(.inline)
@@ -167,7 +174,7 @@ struct PrivateKeySelectionView: View {
 			}
 			.alert("\(keyInUse) is currently in use by \(serversUsing.joinedFormatted())", isPresented: $showingAlert) {
 				Button("OK", role: .cancel) { }
-
+				
 			}
 		}
 		.onAppear() {
@@ -196,6 +203,11 @@ struct PrivateKeySelectionView: View {
 		print(fetchedKeys)
 		print(selectedKeys)
 	}
+	
+	private func onMove(source: IndexSet, destination: Int) {
+		keys.move(fromOffsets: source, toOffset: destination)
+	}
+	
 }
 
 #Preview {
