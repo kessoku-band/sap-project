@@ -35,6 +35,9 @@ struct PrivateKeyLabelView: View {
 struct NewPrivateKeyView: View {
 	@Environment(\.dismiss) var dismiss
 	
+	@Binding var keys: [PrivateKey]
+	
+	@State private var keyName: String = ""
 	@State private var keyText: String = ""
 	
 	let keyTypes = ["rsa", "ed25519", "ed25519-sk", "dsa", "ecdsa", "ecdsa-sk"]
@@ -43,6 +46,12 @@ struct NewPrivateKeyView: View {
 	var body: some View {
 		NavigationStack {
 			Form {
+				Section("Info") {
+					LabeledContent("Key Name") {
+						TextField("Required", text: $keyName)
+					}
+				}
+				
 				Section("Private Key") {
 					TextField("Required", text: $keyText)
 				}
@@ -66,12 +75,20 @@ struct NewPrivateKeyView: View {
 				
 				ToolbarItem(placement: .confirmationAction) {
 					Button("Done") {
+						save()
 						dismiss()
 					}
 				}
 				
 			}
 		}
+	}
+	
+	private func save() {
+		let newPrivateKey = PrivateKey(
+			name: keyName,
+			keyType: selectedKeyType
+		)
 	}
 }
 
@@ -81,6 +98,9 @@ struct PrivateKeySelectionView: View {
 	
 	@State var keys: [PrivateKey] = []
 	@State var showNewPrivateKeySheet: Bool = false
+	
+	@State var newKeyText: String = ""
+	@State var newKeyType: String = ""
 	
 	var body: some View {
 		NavigationStack {
@@ -105,7 +125,7 @@ struct PrivateKeySelectionView: View {
 				}
 			}
 			.sheet(isPresented: $showNewPrivateKeySheet) {
-				NewPrivateKeyView()
+				NewPrivateKeyView(keys: $keys)
 			}
 		}
 		.onAppear() {
