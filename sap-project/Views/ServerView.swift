@@ -24,6 +24,7 @@ struct ServerView: View {
     
     var body: some View {
         NavigationView {
+            
             List {
                 Section(header: Text("Configured workflows"), footer: Text("Workflows will be added as bash scripts, and automated with cron.")) {
                     Button(action: { logNewWorkflow() }) { Text("Refresh SSL certificates").foregroundStyle(.black) }
@@ -41,28 +42,29 @@ struct ServerView: View {
                     }
                 }
             }
-            .navigationTitle("Server 1")
-            .sheet(isPresented: $isShowingSheet) {
-                // Sheet content for adding a new workflow with a label
-                VStack {
-                    TextField("Enter Workflow Label", text: $newWorkflowLabel)
-                        .padding()
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    
-                    Button("Add Workflow") {
-                        // Perform actions when "Add Workflow" is tapped
-                        print("New Workflow Added with label: \(newWorkflowLabel)")
-                        
-                        // Close the sheet after adding the workflow
-                        isShowingSheet = false
-                    }
+            
+        }
+        .navigationTitle("Server 1")
+        .sheet(isPresented: $isShowingSheet) {
+            // Sheet content for adding a new workflow with a label
+            VStack {
+                TextField("Enter Workflow Label", text: $newWorkflowLabel)
                     .padding()
-                    .buttonStyle(.bordered)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                Button("Add Workflow") {
+                    // Perform actions when "Add Workflow" is tapped
+                    print("New Workflow Added with label: \(newWorkflowLabel)")
                     
-                    Spacer()
+                    // Close the sheet after adding the workflow
+                    isShowingSheet = false
                 }
                 .padding()
+                .buttonStyle(.bordered)
+                
+                Spacer()
             }
+            .padding()
         }
     }
 }

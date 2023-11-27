@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 import KeychainAccess
 
+
 struct PrivateKeyLabelView: View {
 	@Binding var selectedKeys: Set<UUID>
 	@Binding var key: PrivateKey
@@ -83,6 +84,7 @@ struct PrivateKeyEditor: View {
 					ToolbarItem(placement: .cancellationAction) {
 						Button("Cancel", role: .cancel) {
 							dismiss()
+                            
 						}
 					}
 				}

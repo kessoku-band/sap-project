@@ -127,6 +127,10 @@ struct ServerEditor: View {
 				
 				ToolbarItem(placement: .confirmationAction) {
 					Button("Done") {
+                        
+                        // Edit
+                        
+                        
 						save()
 						dismiss()
 					}
