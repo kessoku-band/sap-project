@@ -23,7 +23,7 @@ struct ServerView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             
             List {
                 Section(header: Text("Configured workflows"), footer: Text("Workflows will be added as bash scripts, and automated with cron.")) {
@@ -42,9 +42,10 @@ struct ServerView: View {
                     }
                 }
             }
+            .navigationTitle("Server 1")
             
         }
-        .navigationTitle("Server 1")
+ 
         .sheet(isPresented: $isShowingSheet) {
             // Sheet content for adding a new workflow with a label
             VStack {

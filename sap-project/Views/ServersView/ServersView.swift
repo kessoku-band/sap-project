@@ -244,6 +244,7 @@ struct ServersView: View {
 	
 	var body: some View {
 		NavigationStack {
+   
 			NoItemsView(enabled: servers.isEmpty, name: "Configured Servers")
 			
 			List {
