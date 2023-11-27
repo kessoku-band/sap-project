@@ -134,6 +134,7 @@ struct ServerEditor: View {
 						save()
 						dismiss()
 					}
+                    .disabled(name.isEmpty || hostname.isEmpty || port.isEmpty || username.isEmpty || selectedKeys.isEmpty && password.isEmpty)
 				}
 			}
 			.onAppear {
@@ -248,9 +249,9 @@ struct ServersView: View {
 			NoItemsView(enabled: servers.isEmpty, name: "Configured Servers")
 			
 			List {
-				ForEach(servers) { server in
+				ForEach($servers) { $server in
 					NavigationLink(server.name) {
-						ServerView()
+                        ServerView(server: $server)
 					}
 				}
 				.onDelete(perform: onDelete)

@@ -22,7 +22,10 @@ struct PrivateKeyLabelView: View {
 			HStack {
 				Image(systemName: selectedKeys.contains(key.id) ? "checkmark.circle.fill" : "circle")
 					.onTapGesture {
-						selectedKeys = selectedKeys.symmetricDifference(Set([key.id]))
+                        if let prev = selectedKeys.first {
+                            selectedKeys.remove(prev)
+                        }
+                        selectedKeys.insert(key.id)
 					}
 				VStack(alignment: .leading) {
 					Text(key.name)

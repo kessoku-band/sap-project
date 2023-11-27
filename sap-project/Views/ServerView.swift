@@ -22,6 +22,8 @@ struct ServerView: View {
         isShowingSheet = true
     }
     
+    @Binding var server: Server
+    
     var body: some View {
         NavigationStack {
             List {
@@ -41,8 +43,7 @@ struct ServerView: View {
                     }
                 }
             }
-            .navigationTitle("Server 1")
-            
+            .navigationTitle(server.name)
         }
  
         .sheet(isPresented: $isShowingSheet) {
@@ -71,6 +72,6 @@ struct ServerView: View {
 
 struct ServerView_Previews: PreviewProvider {
     static var previews: some View {
-        ServerView()
+        ServerView(server: .constant(Server(name: "test", hostname: "Test", port: 10, username: "jhkdgkdgjdh", authMethod: .password, keyIDs: [])))
     }
 }
