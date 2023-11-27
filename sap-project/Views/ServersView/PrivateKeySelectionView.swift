@@ -52,7 +52,7 @@ struct PrivateKeyEditor: View {
 	
 	@Binding var keys: [PrivateKey]
 	
-	let keyTypes = ["rsa", "ed25519", "ed25519-sk", "dsa", "ecdsa", "ecdsa-sk"]
+	let keyTypes = ["rsa", "ed25519"]
 	
 	@State private var keyName: String = ""
 	@State private var keyText: String = ""

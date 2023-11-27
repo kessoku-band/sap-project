@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A2518B92B13610A00AEE644 /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = 9A2518B82B13610A00AEE644 /* Citadel */; };
 		9A6C40A42B0C9351004D021E /* NewServiceWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6C40A32B0C9351004D021E /* NewServiceWidgetView.swift */; };
 		9A6C40A62B0C9E26004D021E /* PreconfiguredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6C40A52B0C9E26004D021E /* PreconfiguredView.swift */; };
 		9A6D1B2B2B04A8F80097FFD1 /* sap_projectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6D1B2A2B04A8F80097FFD1 /* sap_projectApp.swift */; };
@@ -70,6 +71,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AE80FC42B119FA700C03A5E /* KeychainAccess in Frameworks */,
+				9A2518B92B13610A00AEE644 /* Citadel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +208,7 @@
 			name = "sap-project";
 			packageProductDependencies = (
 				9AE80FC32B119FA700C03A5E /* KeychainAccess */,
+				9A2518B82B13610A00AEE644 /* Citadel */,
 			);
 			productName = "sap-project";
 			productReference = 9A6D1B272B04A8F80097FFD1 /* sap-project.app */;
@@ -237,6 +240,7 @@
 			mainGroup = 9A6D1B1E2B04A8F80097FFD1;
 			packageReferences = (
 				9AE80FC22B119FA700C03A5E /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				9A2518B72B13610A00AEE644 /* XCRemoteSwiftPackageReference "Citadel" */,
 			);
 			productRefGroup = 9A6D1B282B04A8F80097FFD1 /* Products */;
 			projectDirPath = "";
@@ -494,6 +498,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9A2518B72B13610A00AEE644 /* XCRemoteSwiftPackageReference "Citadel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/orlandos-nl/Citadel";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.0;
+			};
+		};
 		9AE80FC22B119FA700C03A5E /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
@@ -505,6 +517,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9A2518B82B13610A00AEE644 /* Citadel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9A2518B72B13610A00AEE644 /* XCRemoteSwiftPackageReference "Citadel" */;
+			productName = Citadel;
+		};
 		9AE80FC32B119FA700C03A5E /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9AE80FC22B119FA700C03A5E /* XCRemoteSwiftPackageReference "KeychainAccess" */;

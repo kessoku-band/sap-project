@@ -31,10 +31,11 @@ struct ServerEditor: View {
 	@State private var port: String = ""
 	
 	@State private var username: String = ""
-	let authMethods: [String] = ["Private Key", "Password"]
-	@State private var selectedAuthMethod: AuthMethod = AuthMethod.privateKey
+	@State private var selectedAuthMethod: AuthMethod = AuthMethod.password
 	@State private var selectedKeys: Set<UUID> = []
 	@State private var password: String = ""
+	
+	@ObservedObject var connectionTestHandler = ConnectionTestHandler()
 	
 	var body: some View {
 		NavigationStack {
@@ -77,7 +78,7 @@ struct ServerEditor: View {
 						}
 						
 						Picker("Method", selection: $selectedAuthMethod) {
-							ForEach(AuthMethod.allCases, id: \.self) {
+							ForEach([AuthMethod.password], id: \.self) {
 								Text($0.description)
 									.tag($0)
 							}
@@ -98,7 +99,38 @@ struct ServerEditor: View {
 					
 					Section {
 						Button {
-							connectionResult = VerifyConnection()
+							Task {
+								switch selectedAuthMethod {
+								case .privateKey:
+									let newServer = Server(
+										name: name,
+										hostname: hostname,
+										port: Int(port) ?? 22,
+										username: username,
+										authMethod: selectedAuthMethod,
+										keyIDs: selectedKeys
+									)
+									
+									connectionResult = ConnectionTest.testing
+									await connectionResult = connectionTestHandler.verifyConnection(server: newServer, keys: keys)
+								case .password:
+									let newPassword = Password()
+									keychain[newPassword.id.uuidString] = password
+									
+									let newServer = Server(
+										name: name,
+										hostname: hostname,
+										port: Int(port) ?? 22,
+										username: username,
+										authMethod: selectedAuthMethod,
+										passwordID: newPassword.id
+									)
+									
+									connectionResult = ConnectionTest.testing
+									await connectionResult = connectionTestHandler.verifyConnection(server: newServer)
+									keychain[newPassword.id.uuidString] = nil
+								}
+							}
 						} label: {
 							Text("Test Connection")
 						}
@@ -106,6 +138,11 @@ struct ServerEditor: View {
 						switch connectionResult {
 						case ConnectionTest.untested:
 							Text("")
+						case ConnectionTest.testing:
+							HStack{
+								ProgressView()
+								Text(connectionTestHandler.tryingText)
+							}
 						case ConnectionTest.success:
 							Text("Connection succeeded.")
 								.foregroundStyle(Color.green)
@@ -157,7 +194,6 @@ struct ServerEditor: View {
 		}
 	}
 	
-	@MainActor
 	private func save() {
 		if let server {
 			switch selectedAuthMethod {
@@ -226,7 +262,7 @@ struct ServerEditor: View {
 					authMethod: selectedAuthMethod,
 					passwordID: newPassword.id
 				)
-
+				
 				modelContext.insert(newServer)
 				servers.append(newServer)
 			}
