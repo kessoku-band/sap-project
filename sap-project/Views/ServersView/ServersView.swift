@@ -42,19 +42,19 @@ struct ServerEditor: View {
 				Form {
 					Section("Info") {
 						LabeledContent("Name") {
-							TextField("Required", text: $name)
+							SpecialTextField("Required", text: $name)
 								.multilineTextAlignment(.trailing)
 						}
 					}
 					
 					Section(header: Text("Connection"), footer: Text("Port must be within the range of 1-65535. The default is port 22.")) {
 						LabeledContent("Hostname") {
-							TextField("Required", text: $hostname)
+                            SpecialTextField("Required", text: $hostname)
 								.multilineTextAlignment(.trailing)
 						}
 						
 						LabeledContent {
-							TextField("Required", text: $port)
+                            SpecialTextField("Required", text: $port)
 								.multilineTextAlignment(.trailing)
 								.onChange(of: port) { oldValue, newValue in
 									if newValue == "" {
@@ -72,7 +72,7 @@ struct ServerEditor: View {
 					
 					Section(header: Text("Authentication"), footer: Text("All credentials will be stored securely in the device Keychain.")) {
 						LabeledContent("Username") {
-							TextField("Required", text: $username)
+                            SpecialTextField("Required", text: $username)
 								.multilineTextAlignment(.trailing)
 						}
 						

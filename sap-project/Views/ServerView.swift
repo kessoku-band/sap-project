@@ -24,7 +24,6 @@ struct ServerView: View {
     
     var body: some View {
         NavigationStack {
-            
             List {
                 Section(header: Text("Configured workflows"), footer: Text("Workflows will be added as bash scripts, and automated with cron.")) {
                     Button(action: { logNewWorkflow() }) { Text("Refresh SSL certificates").foregroundStyle(.black) }
@@ -49,7 +48,7 @@ struct ServerView: View {
         .sheet(isPresented: $isShowingSheet) {
             // Sheet content for adding a new workflow with a label
             VStack {
-                TextField("Enter Workflow Label", text: $newWorkflowLabel)
+                SpecialTextField("Enter Workflow Label", text: $newWorkflowLabel)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 

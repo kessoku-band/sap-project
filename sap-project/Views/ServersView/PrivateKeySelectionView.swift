@@ -62,14 +62,13 @@ struct PrivateKeyEditor: View {
 			Form {
 				Section("Info") {
 					LabeledContent("Key Name") {
-						TextField("Required", text: $keyName)
+                        SpecialTextField("Required", text: $keyName)
 							.multilineTextAlignment(.trailing)
 					}
 				}
 				
 				Section("Private Key") {
-					TextField("Required", text: $keyText)
-					
+                    SpecialTextField("Required", text: $keyText)
 					Picker("Key Type", selection: $selectedKeyType) {
 						ForEach(keyTypes, id: \.self) {
 							Text($0)

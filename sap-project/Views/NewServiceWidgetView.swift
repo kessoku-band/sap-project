@@ -13,15 +13,14 @@ struct ServiceWidgetLineFieldsView: View {
 	
 	var body: some View {
 		LabeledContent("Indicator") {
-			TextField("Required", text: $line.indicator)
+			SpecialTextField("Required", text: $line.indicator)
 				.multilineTextAlignment(.trailing)
 		}
 		LabeledContent("Value") {
-			TextField("Required", text: $line.evalValue)
-				.multilineTextAlignment(.trailing)
+			SpecialTextField("Required", text: $line.evalValue)
 		}
 		LabeledContent("Color") {
-			TextField("Required", text: $line.evalColor)
+			SpecialTextField("Required", text: $line.evalColor)
 				.multilineTextAlignment(.trailing)
 		}
 	}
@@ -40,12 +39,12 @@ struct NewServiceWidgetView: View {
 			Form {
 				Section() {
 					LabeledContent("Service Name") {
-						TextField("Required", text: $name)
+                        SpecialTextField("Required", text: $name)
 							.multilineTextAlignment(.trailing)
 					}
 					
 					LabeledContent("Binary Path") {
-						TextField("Required", text: $path)
+                        SpecialTextField("Required", text: $path)
 							.multilineTextAlignment(.trailing)
 					}
 				}
