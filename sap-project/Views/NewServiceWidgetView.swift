@@ -27,17 +27,28 @@ struct ServiceWidgetLineFieldsView: View {
 }
 
 struct NewServiceWidgetView: View {
+	@Environment(\.modelContext) private var modelContext
+	
 	@State private var name: String = ""
 	@State private var path: String = ""
 	
 	@State private var isShowingSheet: Bool = false
+	@State private var selectedServer: UUID = UUID()
 	
-	@State private var lines: [ServiceWidgetLine] = [ServiceWidgetLine(indicator: "", evalValue: "", evalColor: ""), ServiceWidgetLine(indicator: "", evalValue: "", evalColor: ""), ServiceWidgetLine(indicator: "", evalValue: "", evalColor: "")]
+	@Query var fetchedServiceWidgetGroups: [ServerWidgetGroup]
 	
 	var body: some View {
 		NavigationStack {
 			Form {
-				Section() {
+				Section {
+					Picker("Server", selection: $selectedServer) {
+						ForEach(fetchedServiceWidgetGroups, id: \.self) {
+							Text($0.id)
+						}
+					}
+				}
+				
+				Section {
 					LabeledContent("Service Name") {
                         SpecialTextField("Required", text: $name)
 							.multilineTextAlignment(.trailing)
@@ -49,7 +60,7 @@ struct NewServiceWidgetView: View {
 					}
 				}
 				
-				Section() {
+				Section {
 					Button {
 						isShowingSheet = true
 					} label: {

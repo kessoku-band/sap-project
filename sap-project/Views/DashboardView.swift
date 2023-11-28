@@ -38,7 +38,11 @@ struct SectionHeader: View {
 
 
 struct DashboardView: View {
+	@Environment(\.dismiss) var dismiss
+	
 	@Query var fetchedServiceWidgetGroups: [ServerWidgetGroup]
+	
+	@State private var showNewWidgetSheet = false
 	
 	let columns = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
 	
@@ -67,6 +71,22 @@ struct DashboardView: View {
 			.listStyle(.inset)
 			.headerProminence(.increased)
 			.navigationTitle("Dashboard")
+			.toolbar {
+				ToolbarItem(placement: .topBarLeading) {
+					EditButton()
+				}
+				
+				ToolbarItem(placement: .topBarTrailing) {
+					Button {
+						showNewWidgetSheet.toggle()
+					} label: {
+						Image(systemName: "plus")
+					}
+				}
+			}
+			.sheet(isPresented: $showNewWidgetSheet) {
+				NewServiceWidgetView()
+			}
 		}
 	}
 }
