@@ -38,11 +38,17 @@ struct SectionHeader: View {
 
 
 struct DashboardView: View {
-	@Environment(\.dismiss) var dismiss
+	@Environment(\.dismiss) private var dismiss
+	@Environment(\.modelContext) private var modelContext
 	
 	@Query var fetchedServiceWidgetGroups: [ServerWidgetGroup]
+	@Query var fetchedServers: [Server]
+	
+	@State private var servers: [Server] = []
+	@State private var lines: [ServiceWidgetLine] = []
 	
 	@State private var showNewWidgetSheet = false
+	@State private var addIsEnabled = true
 	
 	let columns = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
 	
@@ -53,7 +59,7 @@ struct DashboardView: View {
 			List {
 				ForEach(fetchedServiceWidgetGroups) { serverWidget in
 					Section(header: SectionHeader(
-						title: serverWidget.name,
+						title: fetchedServers.filter { return $0.id == serverWidget.serverID } [0].name,
 						isOn: Bindable(serverWidget).isOn,
 						onLabel: "Hide",
 						offLabel: "Show"
@@ -85,7 +91,14 @@ struct DashboardView: View {
 				}
 			}
 			.sheet(isPresented: $showNewWidgetSheet) {
-				NewServiceWidgetView()
+				if fetchedServers.isEmpty {
+					ServerEditor(server: nil, servers: $servers)
+				} else {
+					ServiceWidgetEditor(serviceWidgetData: nil)
+				}
+			}
+			.onAppear {
+				servers = fetchedServers
 			}
 		}
 	}

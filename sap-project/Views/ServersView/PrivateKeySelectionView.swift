@@ -47,7 +47,7 @@ struct PrivateKeyEditor: View {
 		key == nil ? "New Private Key" : "Edit Private Key"
 	}
 	
-	@Environment(\.dismiss) var dismiss
+	@Environment(\.dismiss) private var dismiss
 	@Environment(\.modelContext) private var modelContext
 	
 	@Binding var keys: [PrivateKey]

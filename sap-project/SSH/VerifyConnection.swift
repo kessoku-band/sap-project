@@ -21,8 +21,7 @@ enum ConnectionTest {
 
 class ConnectionTestHandler: ObservableObject {
 	var tryingText: String = ""
-	
-	@MainActor
+
 	public func verifyConnection(server: Server, keys: [PrivateKey]? = nil) async -> ConnectionTest {
 		var authSuccess: Bool = false
 		
@@ -54,12 +53,10 @@ class ConnectionTestHandler: ObservableObject {
 					hostKeyValidator: .acceptAnything(),
 					reconnect: .never
 				) else {
-					print("hi")
 					tryingText = "Failed to authenticate with \(keyType) key \(keyName)."
 					continue
 				}
 				
-				print("hi")
 				tryingText = "Successfully authenticated with \(keyType) key \(keyName)."
 				authSuccess = true
 				break keyLoop
@@ -75,18 +72,17 @@ class ConnectionTestHandler: ObservableObject {
 					hostKeyValidator: .acceptAnything(),
 					reconnect: .never
 				) else {
-					print("fucking failed lmao")
 					tryingText = "Failed to authenticate with \(keyType) key \(keyName)."
 					continue
 				}
 				
-				print("real")
 				tryingText = "Successfully authenticated with \(keyType) key \(keyName)."
 				authSuccess = true
 				break keyLoop
 			}
 		}
 		case .password:
+			tryingText = "Trying to connect"
 			let passwordKeychain = Keychain(service: "com.simonfalke.passwords")
 			
 			let password = passwordKeychain[server.passwordID?.uuidString ?? ""] ?? ""
@@ -96,8 +92,12 @@ class ConnectionTestHandler: ObservableObject {
 				authenticationMethod: .passwordBased(username: server.username, password: password),
 				hostKeyValidator: .acceptAnything(), // Please use another validator if at all possible, it's insecure
 				reconnect: .never
-			) else { break }
+			) else {
+				tryingText = "Failed to authenticate."
+				break
+			}
 			
+			tryingText = "Successfully authenticated."
 			authSuccess = true
 		}
 		

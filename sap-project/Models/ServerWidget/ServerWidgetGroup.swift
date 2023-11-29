@@ -11,12 +11,12 @@ import SwiftData
 @Model
 final class ServerWidgetGroup {
 	var id = UUID()
-	var name: String
+	var serverID: UUID
 	@Relationship(deleteRule: .cascade) var serviceWidgetDatas: [ServiceWidgetData]
 	@Transient var isOn: Bool = true
 	
-	init(name: String, serviceWidgetDatas: [ServiceWidgetData], isOn: Bool) {
-		self.name = name
+	init(serverID: UUID, serviceWidgetDatas: [ServiceWidgetData], isOn: Bool) {
+		self.serverID = serverID
 		self.serviceWidgetDatas = serviceWidgetDatas
 		self.isOn = isOn
 	}
