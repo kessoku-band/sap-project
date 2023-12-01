@@ -52,7 +52,6 @@ struct ServiceWidgetEditor: View {
 	
 	var serviceWidgetData: ServiceWidgetData?
 	
-	
 	@State private var isShowingSheet: Bool = false
 	
 	@State private var selectedServer: UUID = UUID()

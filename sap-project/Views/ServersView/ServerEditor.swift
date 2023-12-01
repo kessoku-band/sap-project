@@ -130,10 +130,12 @@ struct ServerEditor: View {
 								)
 								
 								connectionResult = ConnectionTest.testing
+								
+								print(newPassword.id.uuidString as Any)
+
 								Task {
 									await connectionResult = connectionTestHandler.verifyConnection(server: newServer)
 								}
-								keychain[newPassword.id.uuidString] = nil
 								
 								print(connectionTestHandler.tryingText)
 							}

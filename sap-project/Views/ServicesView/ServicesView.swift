@@ -9,7 +9,16 @@ import SwiftUI
 
 struct ServicesView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+		NavigationStack {
+			List {
+				NavigationLink {
+					DockerServersView()
+				} label: {
+					Text("Docker")
+				}
+			}
+			.navigationTitle("Services")
+		}
     }
 }
 

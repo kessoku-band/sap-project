@@ -54,7 +54,7 @@ struct ServiceWidget: View {
 				}
 			}
 		}
-		.frame(minWidth: 125, minHeight: 100, maxHeight: 100, alignment: .topLeading)
+		.frame(minWidth: 125, minHeight: 95, maxHeight: 95, alignment: .topLeading)
 		.padding(EdgeInsets(top: 12, leading: 13, bottom: 12, trailing: 13))
 		.background(Color(uiColor: .secondarySystemBackground))
 		.clipShape(RoundedRectangle(cornerRadius: 10.0))

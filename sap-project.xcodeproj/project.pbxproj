@@ -17,6 +17,9 @@
 		9A709FAE2B131CB0003CA75E /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A709FAD2B131CB0003CA75E /* Array.swift */; };
 		9A709FB02B133931003CA75E /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A709FAF2B133931003CA75E /* Password.swift */; };
 		9AB0B3FA2B177E280070591F /* ServerEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0B3F92B177E280070591F /* ServerEditor.swift */; };
+		9AD0AE822B19D6F70077EFDA /* DockerServersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0AE812B19D6F70077EFDA /* DockerServersView.swift */; };
+		9AD0AE872B19D7660077EFDA /* DockerServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0AE862B19D7660077EFDA /* DockerServer.swift */; };
+		9AD0AE892B19D9720077EFDA /* DockerServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0AE882B19D9720077EFDA /* DockerServicesView.swift */; };
 		9AE305652B198D0C006C3FED /* Execute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE305642B198D0C006C3FED /* Execute.swift */; };
 		9AE80FBF2B118F5800C03A5E /* ServersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE80FBE2B118F5800C03A5E /* ServersView.swift */; };
 		9AE80FC12B11943B00C03A5E /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE80FC02B11943B00C03A5E /* Server.swift */; };
@@ -48,6 +51,9 @@
 		9A709FAD2B131CB0003CA75E /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		9A709FAF2B133931003CA75E /* Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
 		9AB0B3F92B177E280070591F /* ServerEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerEditor.swift; sourceTree = "<group>"; };
+		9AD0AE812B19D6F70077EFDA /* DockerServersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerServersView.swift; sourceTree = "<group>"; };
+		9AD0AE862B19D7660077EFDA /* DockerServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerServer.swift; sourceTree = "<group>"; };
+		9AD0AE882B19D9720077EFDA /* DockerServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerServicesView.swift; sourceTree = "<group>"; };
 		9AE305642B198D0C006C3FED /* Execute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Execute.swift; sourceTree = "<group>"; };
 		9AE80FBE2B118F5800C03A5E /* ServersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersView.swift; sourceTree = "<group>"; };
 		9AE80FC02B11943B00C03A5E /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
@@ -119,9 +125,28 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		9AD0AE802B19D5FF0077EFDA /* ServicesView */ = {
+			isa = PBXGroup;
+			children = (
+				9AF631C22B04AC71002FCF4C /* ServicesView.swift */,
+				9AD0AE812B19D6F70077EFDA /* DockerServersView.swift */,
+				9AD0AE882B19D9720077EFDA /* DockerServicesView.swift */,
+			);
+			path = ServicesView;
+			sourceTree = "<group>";
+		};
+		9AD0AE832B19D73E0077EFDA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9AD0AE862B19D7660077EFDA /* DockerServer.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		9AEE1D2E2B11CA57000D7EE4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9AD0AE832B19D73E0077EFDA /* Services */,
 				9AEE1D382B1264FD000D7EE4 /* ServerWidget */,
 				9AE80FC72B11A94B00C03A5E /* PrivateKey.swift */,
 				9A709FAF2B133931003CA75E /* Password.swift */,
@@ -182,11 +207,11 @@
 		F9CF52E42B10934400A3F140 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9AD0AE802B19D5FF0077EFDA /* ServicesView */,
 				9AEE1D2F2B11CA8C000D7EE4 /* ServersView */,
 				9A6D1B2C2B04A8F80097FFD1 /* ContentView.swift */,
 				9AF631C02B04AAD6002FCF4C /* DashboardView.swift */,
 				9A6C40A32B0C9351004D021E /* ServiceWidgetEditor.swift */,
-				9AF631C22B04AC71002FCF4C /* ServicesView.swift */,
 				F947C1D32B0C71E900D2AC62 /* WorkflowView.swift */,
 				9A6C40A52B0C9E26004D021E /* PreconfiguredView.swift */,
 			);
@@ -273,11 +298,13 @@
 			files = (
 				9AF631C32B04AC71002FCF4C /* ServicesView.swift in Sources */,
 				9AEE1D312B11CE3A000D7EE4 /* ServiceWidgetLine.swift in Sources */,
+				9AD0AE872B19D7660077EFDA /* DockerServer.swift in Sources */,
 				9AE80FCA2B11ACD400C03A5E /* PrivateKeyDetailsView.swift in Sources */,
 				9AE305652B198D0C006C3FED /* Execute.swift in Sources */,
 				9AEE1D352B1245F9000D7EE4 /* ServiceWidgetData.swift in Sources */,
 				9AE80FC62B11A86100C03A5E /* PrivateKeySelectionView.swift in Sources */,
 				9AF631C52B04B343002FCF4C /* ServiceWidget.swift in Sources */,
+				9AD0AE822B19D6F70077EFDA /* DockerServersView.swift in Sources */,
 				9AEE1D422B128167000D7EE4 /* VerifyConnection.swift in Sources */,
 				F947C1D42B0C71E900D2AC62 /* WorkflowView.swift in Sources */,
 				F91A48542B14479A0033F678 /* SpecialTextField.swift in Sources */,
@@ -288,6 +315,7 @@
 				9AF631C12B04AAD6002FCF4C /* DashboardView.swift in Sources */,
 				9AEE1D3D2B127FD9000D7EE4 /* NoItemsView.swift in Sources */,
 				9AEE1D3B2B127DCD000D7EE4 /* String.swift in Sources */,
+				9AD0AE892B19D9720077EFDA /* DockerServicesView.swift in Sources */,
 				9A709FB02B133931003CA75E /* Password.swift in Sources */,
 				9AE80FBF2B118F5800C03A5E /* ServersView.swift in Sources */,
 				9AB0B3FA2B177E280070591F /* ServerEditor.swift in Sources */,

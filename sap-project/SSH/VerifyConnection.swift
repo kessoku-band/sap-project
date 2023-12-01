@@ -85,8 +85,12 @@ class ConnectionTestHandler: ObservableObject {
 			tryingText = "Trying to connect"
 			let passwordKeychain = Keychain(service: "com.simonfalke.passwords")
 			
+			print(server.passwordID?.uuidString as Any)
 			let password = passwordKeychain[server.passwordID?.uuidString ?? ""] ?? ""
 			
+			print(server.hostname)
+			print(server.username)
+			print(password)
 			guard let _ = try? await SSHClient.connect(
 				host: server.hostname,
 				authenticationMethod: .passwordBased(username: server.username, password: password),
@@ -100,6 +104,7 @@ class ConnectionTestHandler: ObservableObject {
 			
 			tryingText = "Successfully authenticated."
 			authSuccess = true
+			passwordKeychain[server.passwordID?.uuidString ?? ""] = nil
 		}
 		
 		switch authSuccess {
