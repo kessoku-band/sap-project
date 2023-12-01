@@ -34,6 +34,8 @@ struct NewServiceWidgetView: View {
 	
 	@State private var isShowingSheet: Bool = false
 	@State private var selectedServer: UUID = UUID()
+    
+    @State private var lines: [ServiceWidgetLine] = []
 	
 	@Query var fetchedServiceWidgetGroups: [ServerWidgetGroup]
 	
@@ -41,11 +43,11 @@ struct NewServiceWidgetView: View {
 		NavigationStack {
 			Form {
 				Section {
-					Picker("Server", selection: $selectedServer) {
-						ForEach(fetchedServiceWidgetGroups, id: \.self) {
-							Text($0.id)
-						}
-					}
+                    Picker("Server", selection: $selectedServer) {
+                        ForEach(fetchedServiceWidgetGroups, id: \.self) { serverGroup in
+                            Text(serverGroup.id.uuidString)
+                        }
+                    }
 				}
 				
 				Section {
