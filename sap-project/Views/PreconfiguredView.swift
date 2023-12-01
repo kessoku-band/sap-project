@@ -15,10 +15,7 @@ struct PreconfiguredView: View {
 		NavigationStack {
 			Form {
 				Button("Test") {
-					lines = [
-						ServiceWidgetLine(indicator: "running", evalValue: "2 cont.", evalColor: "echo 0"),
-						ServiceWidgetLine(indicator: "exited", evalValue: "2 exited", evalColor: "echo 0")
-					]
+					lines = []
 				}
 			}
 			.navigationTitle(title)

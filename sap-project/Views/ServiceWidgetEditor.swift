@@ -30,7 +30,6 @@ struct ServiceWidgetLineFieldsView: View {
 struct UsePreconfiguredView: View {
 	@Binding var lines: [ServiceWidgetLine]
 	
-	
 	var body: some View {
 		NavigationStack {
 			List {
@@ -119,11 +118,7 @@ struct ServiceWidgetEditor: View {
 					lines = serviceWidgetData.serviceWidgetLines
 				} else {
 					selectedServer = servers[0].id
-					lines = (0..<3).map { _ in return ServiceWidgetLine(indicator: "", evalValue: "", evalColor: "") }
-					
-					for line in lines {
-						modelContext.insert(line)
-					}
+					lines = (0..<3).map { i in return ServiceWidgetLine(indicator: "", evalValue: "", evalColor: "", order: i) }
 				}
 			}
 		}
@@ -139,12 +134,14 @@ struct ServiceWidgetEditor: View {
 				serviceWidgetLines: lines
 			)
 			
-			modelContext.insert(newServiceWidgetData)
-			
 			let serverWidgetGroup = fetchedServerWidgetGroups.filter { $0.serverID == selectedServer }
 			
 			if !serverWidgetGroup.isEmpty {
 				serverWidgetGroup[0].serviceWidgetDatas.append(newServiceWidgetData)
+			} else {
+				let newServerWidgetGroup = ServerWidgetGroup(serverID: selectedServer, serviceWidgetDatas: [newServiceWidgetData])
+				
+				modelContext.insert(newServerWidgetGroup)
 			}
 		}
 	}

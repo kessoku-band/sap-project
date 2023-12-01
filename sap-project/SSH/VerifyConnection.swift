@@ -21,7 +21,7 @@ enum ConnectionTest {
 
 class ConnectionTestHandler: ObservableObject {
 	var tryingText: String = ""
-
+	
 	public func verifyConnection(server: Server, keys: [PrivateKey]? = nil) async -> ConnectionTest {
 		var authSuccess: Bool = false
 		
@@ -90,9 +90,10 @@ class ConnectionTestHandler: ObservableObject {
 			guard let _ = try? await SSHClient.connect(
 				host: server.hostname,
 				authenticationMethod: .passwordBased(username: server.username, password: password),
-				hostKeyValidator: .acceptAnything(), // Please use another validator if at all possible, it's insecure
-				reconnect: .never
+				hostKeyValidator: .acceptAnything(),
+				reconnect: .once
 			) else {
+				print("wtf???????")
 				tryingText = "Failed to authenticate."
 				break
 			}

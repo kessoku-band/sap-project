@@ -13,11 +13,9 @@ final class ServerWidgetGroup {
 	var id = UUID()
 	var serverID: UUID
 	@Relationship(deleteRule: .cascade) var serviceWidgetDatas: [ServiceWidgetData]
-	@Transient var isOn: Bool = true
 	
-	init(serverID: UUID, serviceWidgetDatas: [ServiceWidgetData], isOn: Bool) {
+	init(serverID: UUID, serviceWidgetDatas: [ServiceWidgetData]) {
 		self.serverID = serverID
 		self.serviceWidgetDatas = serviceWidgetDatas
-		self.isOn = isOn
 	}
 }

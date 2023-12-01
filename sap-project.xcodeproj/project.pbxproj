@@ -17,6 +17,7 @@
 		9A709FAE2B131CB0003CA75E /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A709FAD2B131CB0003CA75E /* Array.swift */; };
 		9A709FB02B133931003CA75E /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A709FAF2B133931003CA75E /* Password.swift */; };
 		9AB0B3FA2B177E280070591F /* ServerEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0B3F92B177E280070591F /* ServerEditor.swift */; };
+		9AE305652B198D0C006C3FED /* Execute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE305642B198D0C006C3FED /* Execute.swift */; };
 		9AE80FBF2B118F5800C03A5E /* ServersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE80FBE2B118F5800C03A5E /* ServersView.swift */; };
 		9AE80FC12B11943B00C03A5E /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE80FC02B11943B00C03A5E /* Server.swift */; };
 		9AE80FC42B119FA700C03A5E /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 9AE80FC32B119FA700C03A5E /* KeychainAccess */; };
@@ -47,6 +48,7 @@
 		9A709FAD2B131CB0003CA75E /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		9A709FAF2B133931003CA75E /* Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
 		9AB0B3F92B177E280070591F /* ServerEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerEditor.swift; sourceTree = "<group>"; };
+		9AE305642B198D0C006C3FED /* Execute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Execute.swift; sourceTree = "<group>"; };
 		9AE80FBE2B118F5800C03A5E /* ServersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersView.swift; sourceTree = "<group>"; };
 		9AE80FC02B11943B00C03A5E /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		9AE80FC52B11A86100C03A5E /* PrivateKeySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeySelectionView.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEE1D412B128167000D7EE4 /* VerifyConnection.swift */,
+				9AE305642B198D0C006C3FED /* Execute.swift */,
 			);
 			path = SSH;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				9AF631C32B04AC71002FCF4C /* ServicesView.swift in Sources */,
 				9AEE1D312B11CE3A000D7EE4 /* ServiceWidgetLine.swift in Sources */,
 				9AE80FCA2B11ACD400C03A5E /* PrivateKeyDetailsView.swift in Sources */,
+				9AE305652B198D0C006C3FED /* Execute.swift in Sources */,
 				9AEE1D352B1245F9000D7EE4 /* ServiceWidgetData.swift in Sources */,
 				9AE80FC62B11A86100C03A5E /* PrivateKeySelectionView.swift in Sources */,
 				9AF631C52B04B343002FCF4C /* ServiceWidget.swift in Sources */,

@@ -24,12 +24,29 @@ struct ServersView: View {
 			
 			List {
 				ForEach($servers) { $server in
-					NavigationLink(server.name) {
-						ServerEditor(server: server, servers: $servers)
+					Section {
+						NavigationLink {
+							ServerEditor(server: server, servers: $servers)
+						} label: {
+							VStack(alignment: .leading) {
+								Text(server.name)
+									.font(.headline)
+								Spacer()
+									.frame(minHeight: 15, maxHeight: 15)
+								Text(server.username)
+									.font(.subheadline)
+									.foregroundStyle(.secondary)
+								Text("\(server.hostname):\(server.port)")
+									.font(.subheadline)
+									.foregroundStyle(.secondary)
+							}
+							.padding(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
+						}
 					}
 				}
 				.onDelete(perform: onDelete)
 			}
+			.listSectionSpacing(13)
 			.navigationTitle("Servers")
 			.toolbar {
 				ToolbarItem(placement: .topBarLeading) {
