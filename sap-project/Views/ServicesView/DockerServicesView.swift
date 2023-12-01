@@ -8,10 +8,20 @@
 import SwiftUI
 
 struct DockerServicesView: View {
-	var server: Server
+	var dockerServer: DockerServer
+	
+	@State private var selectedContainers = Set<Container>()
 	
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+		NavigationStack {
+			List(selection: $selectedContainers) {
+				ForEach(dockerServer.retrieveContainers()) { container in
+					HStack {
+						Text(container.name)
+					}
+				}
+			}
+		}
     }
 }
 
