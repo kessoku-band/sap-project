@@ -102,6 +102,7 @@ struct ServiceWidgetEditor: View {
 						save()
 						dismiss()
 					}
+					.disabled(name.isEmpty)
 				}
 			}
 			.onAppear {

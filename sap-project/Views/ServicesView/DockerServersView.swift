@@ -149,10 +149,6 @@ struct DockerServersView: View {
 			}
 			.navigationTitle(navigationTitle)
 			.toolbar {
-				ToolbarItem(placement: .topBarLeading) {
-					EditButton()
-				}
-				
 				ToolbarItem(placement: .topBarTrailing) {
 					Button {
 						showNewDockerServerSheet.toggle()
