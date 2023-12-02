@@ -108,9 +108,11 @@ struct DockerServerEditor: View {
 }
 
 struct DockerServersView: View {
-	@Query var dockerServers: [DockerServer]
+	@Environment(\.modelContext) var modelContext
+	@Query var fetchedDockerServers: [DockerServer]
 	@Query var servers: [Server]
 	
+	@State private var dockerServers: [DockerServer] = []
 	@State private var showNewDockerServerSheet = false
 	
 	var body: some View {
@@ -123,6 +125,7 @@ struct DockerServersView: View {
 						DockerServicesView(serverName:server.name, dockerServer: dockerServer)
 					}
 				}
+				.onDelete(perform: onDelete)
 			}
 			.navigationTitle("Configured Servers")
 			.toolbar {
@@ -141,6 +144,16 @@ struct DockerServersView: View {
 			.sheet(isPresented: $showNewDockerServerSheet) {
 				DockerServerEditor(dockerServer: nil)
 			}
+			.onAppear {
+				dockerServers = fetchedDockerServers
+			}
+		}
+	}
+	
+	private func onDelete(at offsets: IndexSet) {
+		for index in offsets {
+			modelContext.delete(dockerServers[index])
+			dockerServers.remove(at: index)
 		}
 	}
 }

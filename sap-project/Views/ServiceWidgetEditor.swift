@@ -39,12 +39,15 @@ struct ServiceWidgetEditor: View {
 	@Query var servers: [Server]
 	
 	var serviceWidgetData: ServiceWidgetData?
+	var navPath: NavigationPath
 	
 	@State private var isShowingSheet: Bool = false
 	
 	@State private var selectedServer: UUID = UUID()
 	@State private var name: String = ""
 	@State private var lines: [ServiceWidgetLine] = []
+	
+	@State private var editing = false
 	
 	var body: some View {
 		NavigationStack {
@@ -56,6 +59,7 @@ struct ServiceWidgetEditor: View {
 								.tag(server.id)
 						}
 					}
+					.disabled(editing)
 				}
 				
 				Section {
@@ -72,7 +76,7 @@ struct ServiceWidgetEditor: View {
 						Text("Use Preconfigured")
 					}
 					.sheet(isPresented: $isShowingSheet, content: {
-						PreconfiguredView(lines: lines)
+						PreconfiguredView(lines: lines, isShowingSheet: $isShowingSheet)
 					})
 				}
 				
@@ -85,9 +89,11 @@ struct ServiceWidgetEditor: View {
 			.navigationTitle("New Service Widget")
 			.navigationBarTitleDisplayMode(.inline)
 			.toolbar {
-				ToolbarItem(placement: .cancellationAction) {
-					Button("Cancel", role: .cancel) {
-						dismiss()
+				if !editing {
+					ToolbarItem(placement: .cancellationAction) {
+						Button("Cancel", role: .cancel) {
+							dismiss()
+						}
 					}
 				}
 				
@@ -99,10 +105,13 @@ struct ServiceWidgetEditor: View {
 				}
 			}
 			.onAppear {
+				print(navPath)
 				if let serviceWidgetData {
 					selectedServer = serviceWidgetData.serverID
 					name = serviceWidgetData.name
 					lines = serviceWidgetData.serviceWidgetLines
+					
+					editing = true
 				} else {
 					selectedServer = servers[0].id
 					lines = (0..<3).map { i in return ServiceWidgetLine(indicator: "", evalValue: "", evalColor: "", unit: "", order: i) }
@@ -134,6 +143,6 @@ struct ServiceWidgetEditor: View {
 	}
 }
 
-#Preview {
-	ServiceWidgetEditor()
-}
+//#Preview {
+//	ServiceWidgetEditor()
+//}

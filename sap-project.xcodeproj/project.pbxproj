@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A14E99E2B1B2CE700ABD22A /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A14E99D2B1B2CE700ABD22A /* TestView.swift */; };
 		9A2518B92B13610A00AEE644 /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = 9A2518B82B13610A00AEE644 /* Citadel */; };
 		9A6C40A42B0C9351004D021E /* ServiceWidgetEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6C40A32B0C9351004D021E /* ServiceWidgetEditor.swift */; };
 		9A6C40A62B0C9E26004D021E /* PreconfiguredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6C40A52B0C9E26004D021E /* PreconfiguredView.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A14E99D2B1B2CE700ABD22A /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		9A6C40A32B0C9351004D021E /* ServiceWidgetEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceWidgetEditor.swift; sourceTree = "<group>"; };
 		9A6C40A52B0C9E26004D021E /* PreconfiguredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreconfiguredView.swift; sourceTree = "<group>"; };
 		9A6D1B272B04A8F80097FFD1 /* sap-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sap-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +115,7 @@
 				F9CF52E42B10934400A3F140 /* Views */,
 				9A6D1B2E2B04A8FA0097FFD1 /* Assets.xcassets */,
 				9A6D1B302B04A8FA0097FFD1 /* Preview Content */,
+				9A14E99D2B1B2CE700ABD22A /* TestView.swift */,
 			);
 			path = "sap-project";
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A14E99E2B1B2CE700ABD22A /* TestView.swift in Sources */,
 				9AF631C32B04AC71002FCF4C /* ServicesView.swift in Sources */,
 				9AEE1D312B11CE3A000D7EE4 /* ServiceWidgetLine.swift in Sources */,
 				9AD0AE872B19D7660077EFDA /* DockerServer.swift in Sources */,

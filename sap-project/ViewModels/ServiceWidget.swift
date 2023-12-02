@@ -10,7 +10,7 @@ import SwiftUI
 struct ServiceWidgetLineView: View {
 	let line: ServiceWidgetLine
 	let server: Server
-
+	
 	@ObservedObject var widgetExecuteWrapper = WidgetExecuteWrapper()
 	
 	var body: some View {
@@ -33,31 +33,41 @@ struct ServiceWidget: View {
 	let name: String
 	let server: Server
 	let lines: [ServiceWidgetLine]
+	let serviceWidgetData: ServiceWidgetData
+	var navPath: NavigationPath
 	
 	var body: some View {
-		VStack(alignment: .leading) {
-			HStack {
-				Text(name)
-					.font(.headline)
+		ZStack {
+			NavigationLink(destination: ServiceWidgetEditor(serviceWidgetData: serviceWidgetData, navPath: navPath)) {
+				EmptyView()
 			}
+			.frame(width: 0)
+			.opacity(0)
 			
-			Spacer()
-				.frame(height: 10)
-			
-			ForEach(lines, id: \.indicator) { line in
-				if line.indicator.isEmpty {
-					HStack {
-						Text(".")
-					}.hidden()
-				} else {
-					ServiceWidgetLineView(line: line, server: server)
+			VStack(alignment: .leading) {
+				HStack {
+					Text(name)
+						.font(.headline)
+				}
+				
+				Spacer()
+					.frame(height: 10)
+				
+				ForEach(lines, id: \.indicator) { line in
+					if line.indicator.isEmpty {
+						HStack {
+							Text(".")
+						}.hidden()
+					} else {
+						ServiceWidgetLineView(line: line, server: server)
+					}
 				}
 			}
+			.frame(minWidth: 125, minHeight: 95, maxHeight: 95, alignment: .topLeading)
+			.padding(EdgeInsets(top: 12, leading: 13, bottom: 12, trailing: 13))
+			.background(Color(uiColor: .secondarySystemBackground))
+			.clipShape(RoundedRectangle(cornerRadius: 10.0))
 		}
-		.frame(minWidth: 125, minHeight: 95, maxHeight: 95, alignment: .topLeading)
-		.padding(EdgeInsets(top: 12, leading: 13, bottom: 12, trailing: 13))
-		.background(Color(uiColor: .secondarySystemBackground))
-		.clipShape(RoundedRectangle(cornerRadius: 10.0))
 	}
 }
 

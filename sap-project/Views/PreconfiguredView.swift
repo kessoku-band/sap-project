@@ -12,6 +12,7 @@ struct PreconfiguredDetailsView: View {
 	
 	let lines: [ServiceWidgetLine]
 	@Binding var detailedView: String
+	@Binding var isShowingSheet: Bool
 	
 	@State var containerName = ""
 	
@@ -23,6 +24,7 @@ struct PreconfiguredDetailsView: View {
 					case "container":
 						LabeledContent("Container Name") {
 							SpecialTextField("Required", text: $containerName)
+								.multilineTextAlignment(.trailing)
 						}
 					default: EmptyView()
 					}
@@ -40,7 +42,7 @@ struct PreconfiguredDetailsView: View {
 				ToolbarItem(placement: .confirmationAction) {
 					Button("Done") {
 						save()
-						dismiss()
+						isShowingSheet = false
 					}
 					.disabled(containerName.isEmpty)
 				}
@@ -77,6 +79,7 @@ struct PreconfiguredView: View {
 	@Environment(\.dismiss) private var dismiss
 	
 	let lines: [ServiceWidgetLine]
+	@Binding var isShowingSheet: Bool
 	
 	@State private var detailedView: String = ""
 	@State private var showPreconfiguredDetailsSheet: Bool = false
@@ -103,6 +106,8 @@ struct PreconfiguredView: View {
 						lines[2].evalColor = "docker ps --filter \"status=exited\" -q | wc -l | awk '{print ($1 > 0) ? 1 : 2}'"
 						lines[2].unit = "cont."
 						lines[2].order = 2
+						
+						dismiss()
 					}
 					
 					Button("Docker Container") {
@@ -128,6 +133,7 @@ struct PreconfiguredView: View {
 						lines[2].evalColor = "systemctl list-units --type=service --state=exited | grep -c '\\.service' | awk '{print ($1 > 0) ? 1 : 2}'"
 						lines[2].unit = "serv."
 						lines[2].order = 2
+						dismiss()
 					}
 					
 					Button("APT") {
@@ -148,6 +154,7 @@ struct PreconfiguredView: View {
 						lines[2].evalColor = "apt list --upgradable 2>/dev/null | grep -c '/' | awk '{print ($1 > 0) ? 2 : 0}'"
 						lines[2].unit = "pkgs"
 						lines[2].order = 2
+						dismiss()
 					}
 				}
 			}
@@ -155,11 +162,11 @@ struct PreconfiguredView: View {
 		.navigationTitle("Preconfigured Widgets")
 		.navigationBarTitleDisplayMode(.inline)
 		.sheet(isPresented: $showPreconfiguredDetailsSheet) {
-			PreconfiguredDetailsView(lines: lines, detailedView: $detailedView)
+			PreconfiguredDetailsView(lines: lines, detailedView: $detailedView, isShowingSheet: $isShowingSheet)
 		}
 	}
 }
 
-#Preview {
-	PreconfiguredView(lines: [])
-}
+//#Preview {
+//	PreconfiguredView(lines: [])
+//}
