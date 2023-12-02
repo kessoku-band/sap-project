@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A14E99E2B1B2CE700ABD22A /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A14E99D2B1B2CE700ABD22A /* TestView.swift */; };
 		9A2518B92B13610A00AEE644 /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = 9A2518B82B13610A00AEE644 /* Citadel */; };
-		9A6C40A42B0C9351004D021E /* NewServiceWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6C40A32B0C9351004D021E /* NewServiceWidgetView.swift */; };
+		9A6C40A42B0C9351004D021E /* ServiceWidgetEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6C40A32B0C9351004D021E /* ServiceWidgetEditor.swift */; };
 		9A6C40A62B0C9E26004D021E /* PreconfiguredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6C40A52B0C9E26004D021E /* PreconfiguredView.swift */; };
 		9A6D1B2B2B04A8F80097FFD1 /* sap_projectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6D1B2A2B04A8F80097FFD1 /* sap_projectApp.swift */; };
 		9A6D1B2D2B04A8F80097FFD1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6D1B2C2B04A8F80097FFD1 /* ContentView.swift */; };
@@ -16,6 +17,11 @@
 		9A6D1B322B04A8FA0097FFD1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A6D1B312B04A8FA0097FFD1 /* Preview Assets.xcassets */; };
 		9A709FAE2B131CB0003CA75E /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A709FAD2B131CB0003CA75E /* Array.swift */; };
 		9A709FB02B133931003CA75E /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A709FAF2B133931003CA75E /* Password.swift */; };
+		9AB0B3FA2B177E280070591F /* ServerEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0B3F92B177E280070591F /* ServerEditor.swift */; };
+		9AD0AE822B19D6F70077EFDA /* DockerServersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0AE812B19D6F70077EFDA /* DockerServersView.swift */; };
+		9AD0AE872B19D7660077EFDA /* DockerServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0AE862B19D7660077EFDA /* DockerServer.swift */; };
+		9AD0AE892B19D9720077EFDA /* DockerServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0AE882B19D9720077EFDA /* DockerServicesView.swift */; };
+		9AE305652B198D0C006C3FED /* Execute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE305642B198D0C006C3FED /* Execute.swift */; };
 		9AE80FBF2B118F5800C03A5E /* ServersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE80FBE2B118F5800C03A5E /* ServersView.swift */; };
 		9AE80FC12B11943B00C03A5E /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE80FC02B11943B00C03A5E /* Server.swift */; };
 		9AE80FC42B119FA700C03A5E /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 9AE80FC32B119FA700C03A5E /* KeychainAccess */; };
@@ -32,12 +38,12 @@
 		9AF631C32B04AC71002FCF4C /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF631C22B04AC71002FCF4C /* ServicesView.swift */; };
 		9AF631C52B04B343002FCF4C /* ServiceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF631C42B04B343002FCF4C /* ServiceWidget.swift */; };
 		F91A48542B14479A0033F678 /* SpecialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A48532B14479A0033F678 /* SpecialTextField.swift */; };
-		F947C1D22B0C71A900D2AC62 /* ServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F947C1D12B0C71A900D2AC62 /* ServerView.swift */; };
 		F947C1D42B0C71E900D2AC62 /* WorkflowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F947C1D32B0C71E900D2AC62 /* WorkflowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9A6C40A32B0C9351004D021E /* NewServiceWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewServiceWidgetView.swift; sourceTree = "<group>"; };
+		9A14E99D2B1B2CE700ABD22A /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		9A6C40A32B0C9351004D021E /* ServiceWidgetEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceWidgetEditor.swift; sourceTree = "<group>"; };
 		9A6C40A52B0C9E26004D021E /* PreconfiguredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreconfiguredView.swift; sourceTree = "<group>"; };
 		9A6D1B272B04A8F80097FFD1 /* sap-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sap-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6D1B2A2B04A8F80097FFD1 /* sap_projectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sap_projectApp.swift; sourceTree = "<group>"; };
@@ -46,6 +52,11 @@
 		9A6D1B312B04A8FA0097FFD1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9A709FAD2B131CB0003CA75E /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		9A709FAF2B133931003CA75E /* Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
+		9AB0B3F92B177E280070591F /* ServerEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerEditor.swift; sourceTree = "<group>"; };
+		9AD0AE812B19D6F70077EFDA /* DockerServersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerServersView.swift; sourceTree = "<group>"; };
+		9AD0AE862B19D7660077EFDA /* DockerServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerServer.swift; sourceTree = "<group>"; };
+		9AD0AE882B19D9720077EFDA /* DockerServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerServicesView.swift; sourceTree = "<group>"; };
+		9AE305642B198D0C006C3FED /* Execute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Execute.swift; sourceTree = "<group>"; };
 		9AE80FBE2B118F5800C03A5E /* ServersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersView.swift; sourceTree = "<group>"; };
 		9AE80FC02B11943B00C03A5E /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		9AE80FC52B11A86100C03A5E /* PrivateKeySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeySelectionView.swift; sourceTree = "<group>"; };
@@ -61,7 +72,6 @@
 		9AF631C22B04AC71002FCF4C /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		9AF631C42B04B343002FCF4C /* ServiceWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceWidget.swift; sourceTree = "<group>"; };
 		F91A48532B14479A0033F678 /* SpecialTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialTextField.swift; sourceTree = "<group>"; };
-		F947C1D12B0C71A900D2AC62 /* ServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerView.swift; sourceTree = "<group>"; };
 		F947C1D32B0C71E900D2AC62 /* WorkflowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +115,7 @@
 				F9CF52E42B10934400A3F140 /* Views */,
 				9A6D1B2E2B04A8FA0097FFD1 /* Assets.xcassets */,
 				9A6D1B302B04A8FA0097FFD1 /* Preview Content */,
+				9A14E99D2B1B2CE700ABD22A /* TestView.swift */,
 			);
 			path = "sap-project";
 			sourceTree = "<group>";
@@ -117,9 +128,28 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		9AD0AE802B19D5FF0077EFDA /* ServicesView */ = {
+			isa = PBXGroup;
+			children = (
+				9AF631C22B04AC71002FCF4C /* ServicesView.swift */,
+				9AD0AE812B19D6F70077EFDA /* DockerServersView.swift */,
+				9AD0AE882B19D9720077EFDA /* DockerServicesView.swift */,
+			);
+			path = ServicesView;
+			sourceTree = "<group>";
+		};
+		9AD0AE832B19D73E0077EFDA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9AD0AE862B19D7660077EFDA /* DockerServer.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		9AEE1D2E2B11CA57000D7EE4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9AD0AE832B19D73E0077EFDA /* Services */,
 				9AEE1D382B1264FD000D7EE4 /* ServerWidget */,
 				9AE80FC72B11A94B00C03A5E /* PrivateKey.swift */,
 				9A709FAF2B133931003CA75E /* Password.swift */,
@@ -134,6 +164,7 @@
 				9AE80FBE2B118F5800C03A5E /* ServersView.swift */,
 				9AE80FC52B11A86100C03A5E /* PrivateKeySelectionView.swift */,
 				9AE80FC92B11ACD400C03A5E /* PrivateKeyDetailsView.swift */,
+				9AB0B3F92B177E280070591F /* ServerEditor.swift */,
 			);
 			path = ServersView;
 			sourceTree = "<group>";
@@ -161,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEE1D412B128167000D7EE4 /* VerifyConnection.swift */,
+				9AE305642B198D0C006C3FED /* Execute.swift */,
 			);
 			path = SSH;
 			sourceTree = "<group>";
@@ -178,14 +210,13 @@
 		F9CF52E42B10934400A3F140 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9AD0AE802B19D5FF0077EFDA /* ServicesView */,
 				9AEE1D2F2B11CA8C000D7EE4 /* ServersView */,
 				9A6D1B2C2B04A8F80097FFD1 /* ContentView.swift */,
 				9AF631C02B04AAD6002FCF4C /* DashboardView.swift */,
-				F947C1D12B0C71A900D2AC62 /* ServerView.swift */,
-				9AF631C22B04AC71002FCF4C /* ServicesView.swift */,
-				F947C1D32B0C71E900D2AC62 /* WorkflowView.swift */,
-				9A6C40A32B0C9351004D021E /* NewServiceWidgetView.swift */,
+				9A6C40A32B0C9351004D021E /* ServiceWidgetEditor.swift */,
 				9A6C40A52B0C9E26004D021E /* PreconfiguredView.swift */,
+				F947C1D32B0C71E900D2AC62 /* WorkflowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -268,27 +299,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A14E99E2B1B2CE700ABD22A /* TestView.swift in Sources */,
 				9AF631C32B04AC71002FCF4C /* ServicesView.swift in Sources */,
 				9AEE1D312B11CE3A000D7EE4 /* ServiceWidgetLine.swift in Sources */,
+				9AD0AE872B19D7660077EFDA /* DockerServer.swift in Sources */,
 				9AE80FCA2B11ACD400C03A5E /* PrivateKeyDetailsView.swift in Sources */,
+				9AE305652B198D0C006C3FED /* Execute.swift in Sources */,
 				9AEE1D352B1245F9000D7EE4 /* ServiceWidgetData.swift in Sources */,
 				9AE80FC62B11A86100C03A5E /* PrivateKeySelectionView.swift in Sources */,
 				9AF631C52B04B343002FCF4C /* ServiceWidget.swift in Sources */,
+				9AD0AE822B19D6F70077EFDA /* DockerServersView.swift in Sources */,
 				9AEE1D422B128167000D7EE4 /* VerifyConnection.swift in Sources */,
 				F947C1D42B0C71E900D2AC62 /* WorkflowView.swift in Sources */,
 				F91A48542B14479A0033F678 /* SpecialTextField.swift in Sources */,
 				9A6C40A62B0C9E26004D021E /* PreconfiguredView.swift in Sources */,
 				9A709FAE2B131CB0003CA75E /* Array.swift in Sources */,
-				F947C1D22B0C71A900D2AC62 /* ServerView.swift in Sources */,
 				9A6D1B2D2B04A8F80097FFD1 /* ContentView.swift in Sources */,
 				9AE80FC12B11943B00C03A5E /* Server.swift in Sources */,
 				9AF631C12B04AAD6002FCF4C /* DashboardView.swift in Sources */,
 				9AEE1D3D2B127FD9000D7EE4 /* NoItemsView.swift in Sources */,
 				9AEE1D3B2B127DCD000D7EE4 /* String.swift in Sources */,
+				9AD0AE892B19D9720077EFDA /* DockerServicesView.swift in Sources */,
 				9A709FB02B133931003CA75E /* Password.swift in Sources */,
 				9AE80FBF2B118F5800C03A5E /* ServersView.swift in Sources */,
+				9AB0B3FA2B177E280070591F /* ServerEditor.swift in Sources */,
 				9A6D1B2B2B04A8F80097FFD1 /* sap_projectApp.swift in Sources */,
-				9A6C40A42B0C9351004D021E /* NewServiceWidgetView.swift in Sources */,
+				9A6C40A42B0C9351004D021E /* ServiceWidgetEditor.swift in Sources */,
 				9AE80FC82B11A94B00C03A5E /* PrivateKey.swift in Sources */,
 				9AEE1D372B124A91000D7EE4 /* ServerWidgetGroup.swift in Sources */,
 			);
@@ -430,8 +466,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,8 +496,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

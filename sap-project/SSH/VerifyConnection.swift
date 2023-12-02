@@ -22,7 +22,6 @@ enum ConnectionTest {
 class ConnectionTestHandler: ObservableObject {
 	var tryingText: String = ""
 	
-	@MainActor
 	public func verifyConnection(server: Server, keys: [PrivateKey]? = nil) async -> ConnectionTest {
 		var authSuccess: Bool = false
 		
@@ -54,12 +53,10 @@ class ConnectionTestHandler: ObservableObject {
 					hostKeyValidator: .acceptAnything(),
 					reconnect: .never
 				) else {
-					print("hi")
 					tryingText = "Failed to authenticate with \(keyType) key \(keyName)."
 					continue
 				}
 				
-				print("hi")
 				tryingText = "Successfully authenticated with \(keyType) key \(keyName)."
 				authSuccess = true
 				break keyLoop
@@ -75,30 +72,39 @@ class ConnectionTestHandler: ObservableObject {
 					hostKeyValidator: .acceptAnything(),
 					reconnect: .never
 				) else {
-					print("fucking failed lmao")
 					tryingText = "Failed to authenticate with \(keyType) key \(keyName)."
 					continue
 				}
 				
-				print("real")
 				tryingText = "Successfully authenticated with \(keyType) key \(keyName)."
 				authSuccess = true
 				break keyLoop
 			}
 		}
 		case .password:
+			tryingText = "Trying to connect"
 			let passwordKeychain = Keychain(service: "com.simonfalke.passwords")
 			
+			print(server.passwordID?.uuidString as Any)
 			let password = passwordKeychain[server.passwordID?.uuidString ?? ""] ?? ""
 			
+			print(server.hostname)
+			print(server.username)
+			print(password)
 			guard let _ = try? await SSHClient.connect(
 				host: server.hostname,
 				authenticationMethod: .passwordBased(username: server.username, password: password),
-				hostKeyValidator: .acceptAnything(), // Please use another validator if at all possible, it's insecure
-				reconnect: .never
-			) else { break }
+				hostKeyValidator: .acceptAnything(),
+				reconnect: .once
+			) else {
+				print("wtf???????")
+				tryingText = "Failed to authenticate."
+				break
+			}
 			
+			tryingText = "Successfully authenticated."
 			authSuccess = true
+			passwordKeychain[server.passwordID?.uuidString ?? ""] = nil
 		}
 		
 		switch authSuccess {

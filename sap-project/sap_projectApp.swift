@@ -14,6 +14,7 @@ struct sap_projectApp: App {
 		WindowGroup {
 			ContentView()
 				.modelContainer(for: [
+					DockerServer.self,
 					PrivateKey.self,
 					Password.self,
 					ServiceWidgetLine.self,
