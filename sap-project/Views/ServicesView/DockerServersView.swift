@@ -26,19 +26,20 @@ struct DockerServerEditor: View {
 	@Environment(\.modelContext) var modelContext
 	
 	@Query var servers: [Server]
-	@Query var dockerServers: [DockerServer]
 	
 	@State private var selectedServer: UUID = UUID()
 	@State private var pathWrappers: [PathWrapper] = []
+	@State private var filteredServers: [Server] = []
 	
 	let dockerServer: DockerServer?
+	@Binding var dockerServers: [DockerServer]
 	
 	var body: some View {
 		NavigationStack {
 			Form {
 				Section {
 					Picker("Server", selection: $selectedServer) {
-						ForEach(servers.filter { !dockerServers.map { $0.serverID } .contains($0.id) } ) { server in
+						ForEach(filteredServers) { server in
 							Text(server.name)
 								.tag(server.id)
 						}
@@ -77,11 +78,12 @@ struct DockerServerEditor: View {
 				}
 			}
 			.onAppear {
+				filteredServers = servers.filter { !dockerServers.map { $0.serverID } .contains($0.id) }
 				if let dockerServer {
 					selectedServer = dockerServer.serverID
 					pathWrappers = dockerServer.composePaths.map { PathWrapper(path: $0) }
 				} else {
-					selectedServer = servers[0].id
+					selectedServer = filteredServers[0].id
 				}
 			}
 		}
@@ -91,9 +93,18 @@ struct DockerServerEditor: View {
 		if let dockerServer {
 			dockerServer.serverID = selectedServer
 			dockerServer.composePaths = pathWrappers.map { $0.path }
+			
+			filteredServers = servers.filter { !dockerServers.map { $0.serverID } .contains($0.id) }
+			selectedServer = filteredServers[0].id
 		} else {
 			let newDockerServer = DockerServer(serverID: selectedServer, composePaths: pathWrappers.map { $0.path } )
 			
+			dockerServers.append(newDockerServer)
+			filteredServers = servers.filter { !dockerServers.map { $0.serverID } .contains($0.id) }
+			if !filteredServers.isEmpty {
+				selectedServer = filteredServers[0].id
+			}
+			print(selectedServer)
 			modelContext.insert(newDockerServer)
 		}
 	}
@@ -109,6 +120,9 @@ struct DockerServerEditor: View {
 
 struct DockerServersView: View {
 	@Environment(\.modelContext) var modelContext
+	
+	let navigationTitle: String
+	
 	@Query var fetchedDockerServers: [DockerServer]
 	@Query var servers: [Server]
 	
@@ -127,7 +141,7 @@ struct DockerServersView: View {
 				}
 				.onDelete(perform: onDelete)
 			}
-			.navigationTitle("Configured Servers")
+			.navigationTitle(navigationTitle)
 			.toolbar {
 				ToolbarItem(placement: .topBarLeading) {
 					EditButton()
@@ -139,10 +153,11 @@ struct DockerServersView: View {
 					} label: {
 						Image(systemName: "plus")
 					}
+					.disabled(servers.filter { !dockerServers.map { $0.serverID } .contains($0.id) }.isEmpty)
 				}
 			}
 			.sheet(isPresented: $showNewDockerServerSheet) {
-				DockerServerEditor(dockerServer: nil)
+				DockerServerEditor(dockerServer: nil, dockerServers: $dockerServers)
 			}
 			.onAppear {
 				dockerServers = fetchedDockerServers
@@ -159,5 +174,5 @@ struct DockerServersView: View {
 }
 
 #Preview {
-	DockerServersView()
+	DockerServersView(navigationTitle: "Docker")
 }

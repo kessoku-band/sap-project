@@ -61,7 +61,7 @@ struct PreconfiguredDetailsView: View {
 			
 			lines[1].indicator = "status"
 			lines[1].evalValue = "docker inspect --format '{{.State.Status}}' \(containerName) 2>/dev/null || echo \"removed\""
-			lines[1].evalColor = "docker inspect --format '{{.State.Status}}' \(containerName) 2>/dev/null || echo \"removed\" | awk '{print ($1 == \"running\") ? 2 : ($1 == \"exited\" || $1 == \"removed\") ? 1 : 0}'"
+			lines[1].evalColor = "echo $(docker inspect --format '{{.State.Status}}' \(containerName) 2>/dev/null || echo \"removed\") | awk '{print ($1 == \"running\") ? 2 : ($1 == \"exited\" || $1 == \"removed\") ? 1 : 0}'"
 			lines[1].unit = ""
 			lines[1].order = 1
 			

@@ -32,20 +32,28 @@ final class DockerServer {
 		self.composePaths = composePaths
 	}
 	
-	func retrieveContainers() -> [Container] {
-		return []
+	func retrieveContainerStatus(server: Server, container: Container, executeWrapper: ExecuteWrapper) async -> String {
+		let output = await executeWrapper.execute(server: server, command: "docker inspect -f '{{.State.Status}}' \(container.name)")
+		return output
 	}
 	
-	func stopContainers(containers: [Container]) {
+	func retrieveContainers(server: Server, executeWrapper: ExecuteWrapper) async -> [Container] {
+		let output = await executeWrapper.execute(server: server, command: "docker ps -a --format \"{{.ID}}\" | xargs -I {} docker inspect --format='{{.Name}}' {} | cut -d'/' -f2")
+		return output.components(separatedBy: CharacterSet(charactersIn: " \n")).map { Container(type: ContainerType.individual, name: $0) }
+	}
+	
+	func stopContainers(server: Server, containers: Set<Container>, executeWrapper: ExecuteWrapper) async {
+		for container in containers {
+			let _ = await executeWrapper.execute(server: server, command: "docker stop \(container.name)")
+		}
+	}
+	
+	func startContainers(containers: Set<Container>) {
 		
 	}
 	
-	func startContainers(containers: [Container]) {
-		
-	}
-	
-	func restartContainers(containers: [Container]) {
-		stopContainers(containers: containers)
+	func restartContainers(server: Server, containers: Set<Container>, executeWrapper: ExecuteWrapper) async {
+		await stopContainers(server: server, containers: containers, executeWrapper: executeWrapper)
 		startContainers(containers: containers)
 	}
 }

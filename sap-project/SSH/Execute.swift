@@ -10,6 +10,35 @@ import Citadel
 import KeychainAccess
 import SwiftUI
 
+class ExecuteWrapper: ObservableObject {
+	@Published var completed = false
+	
+	func execute(server: Server, command: String) async -> String {
+		if server.authMethod == AuthMethod.password {
+			let passwordKeychain = Keychain(service: "com.simonfalke.passwords")
+			
+			let password = passwordKeychain[server.passwordID?.uuidString ?? ""] ?? ""
+			
+			guard let client = try? await SSHClient.connect(
+				host: server.hostname,
+				authenticationMethod: .passwordBased(username: server.username, password: password),
+				hostKeyValidator: .acceptAnything(),
+				reconnect: .once
+			) else { return "" }
+			
+			guard let merged = try? await client.executeCommand(command, mergeStreams: true) else { return "" }
+			
+			await MainActor.run {
+				completed = true
+			}
+			
+			return String(buffer: merged).trimmingCharacters(in: .whitespacesAndNewlines)
+		}
+		
+		return ""
+	}
+}
+
 class WidgetExecuteWrapper: ObservableObject {
 	@Published var value = "-"
 	@Published var color = Color.secondary

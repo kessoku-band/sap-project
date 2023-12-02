@@ -8,27 +8,26 @@
 import SwiftUI
 
 struct TestView: View {
-	@State private var presentedNumbers = [Int]()
-
-		var body: some View {
-			NavigationStack(path: $presentedNumbers) {
-				List(1..<50) { i in
-					NavigationLink(value: i) {
-						Label("Row \(i)", systemImage: "\(i).circle")
-					}
-				}
-				.navigationDestination(for: Int.self) { i in
-					VStack {
-						Text("Detail \(i)")
-
-						Button("Go to Next") {
-							presentedNumbers.append(i + 1)
-						}
-					}
-				}
-				.navigationTitle("Navigation")
+	@State private var selection = Set<String>()
+	
+	let names = [
+		"Cyril",
+		"Lana",
+		"Mallory",
+		"Sterling"
+	]
+	
+	var body: some View {
+		NavigationStack {
+			List(names, id: \.self, selection: $selection) { name in
+				Text(name)
+			}
+			.navigationTitle("List Selection")
+			.toolbar {
+				EditButton()
 			}
 		}
+	}
 }
 
 #Preview {
