@@ -120,10 +120,11 @@ struct DockerServersView: View {
 					let server = servers.filter { $0.id == dockerServer.serverID } [0]
 					
 					NavigationLink(server.name) {
-						DockerServicesView(dockerServer: dockerServer)
+						DockerServicesView(serverName:server.name, dockerServer: dockerServer)
 					}
 				}
 			}
+			.navigationTitle("Configured Servers")
 			.toolbar {
 				ToolbarItem(placement: .topBarLeading) {
 					EditButton()

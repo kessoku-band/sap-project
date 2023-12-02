@@ -18,7 +18,7 @@ struct ServiceWidgetLineView: View {
 			Text(line.indicator)
 				.foregroundStyle(.secondary)
 			Spacer()
-			Text(widgetExecuteWrapper.value)
+			Text("\(widgetExecuteWrapper.value) \(line.unit)")
 				.foregroundStyle(widgetExecuteWrapper.color)
 		}
 		.onAppear {
@@ -47,8 +47,8 @@ struct ServiceWidget: View {
 			ForEach(lines, id: \.indicator) { line in
 				if line.indicator.isEmpty {
 					HStack {
-						Text("")
-					}
+						Text(".")
+					}.hidden()
 				} else {
 					ServiceWidgetLineView(line: line, server: server)
 				}

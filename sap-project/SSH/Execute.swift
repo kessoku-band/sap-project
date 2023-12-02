@@ -27,17 +27,16 @@ class WidgetExecuteWrapper: ObservableObject {
 				reconnect: .once
 			) else { return }
 			
-			guard let stdout = try? await client.executeCommand(evalValue) else { return }
+			guard let evaluatedValue = try? await client.executeCommand(evalValue) else { return }
+			
+			guard let evaluatedColor = try? await client.executeCommand(evalColor) else { return }
 			
 			await MainActor.run {
-				value = String(buffer: stdout).trimmingCharacters(in: .whitespacesAndNewlines)
+				value = String(buffer: evaluatedValue).trimmingCharacters(in: .whitespacesAndNewlines)
 			}
-			print(value)
-			
-			guard let stdout = try? await client.executeCommand(evalColor) else { return }
 			
 			await MainActor.run {
-				color = retrieveColor(colorInt: Int(String(buffer: stdout).trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0)
+				color = retrieveColor(colorInt: Int(String(buffer: evaluatedColor).trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0)
 			}
 			
 			try? await client.close()
@@ -46,10 +45,10 @@ class WidgetExecuteWrapper: ObservableObject {
 	
 	private func retrieveColor(colorInt: Int) -> Color {
 		switch colorInt {
-		case 0: return Color.secondary
+		case 0: return Color(UIColor.label)
 		case 1: return Color.red
 		case 2: return Color.green
-		default: return Color.secondary
+		default: return Color(UIColor.label)
 		}
 	}
 }

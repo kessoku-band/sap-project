@@ -67,8 +67,11 @@ struct EmptySectionHeader: View {
 }
 
 struct ServerWidgetGroupView: View {
+	@Environment(\.modelContext) var modelContext
+	
 	var serverWidgetGroup: ServerWidgetGroup
 	var servers: [Server]
+	@Binding var editMode: EditMode
 	
 	@State private var isOn = true
 	
@@ -82,12 +85,33 @@ struct ServerWidgetGroupView: View {
 			offLabel: "Show"
 		)) {
 			if isOn {
+				Text(editMode==EditMode.active ? "editing" : "not editing")
 				LazyVGrid(columns: columns, spacing: 11)  {
 					ForEach(serverWidgetGroup.serviceWidgetDatas.sorted { $0.name < $1.name }) { serviceWidgetData in
 						ServiceWidget(name: serviceWidgetData.name, server: servers.filter({ $0.id == serviceWidgetData.serverID })[0], lines: serviceWidgetData.serviceWidgetLines.sorted{ $0.order < $1.order })
+							.swipeActions(allowsFullSwipe: false) {
+								Button(role: .destructive) {
+									if let indexToDelete = serverWidgetGroup.serviceWidgetDatas.firstIndex(where: { $0.id == serviceWidgetData.id }) {
+										modelContext.delete(serverWidgetGroup.serviceWidgetDatas[indexToDelete])
+										serverWidgetGroup.serviceWidgetDatas.remove(at: indexToDelete)
+									}
+									
+								} label: {
+									Label("Delete", systemImage: "trash.fill")
+								}
+							}
 					}
+					.onDelete(perform: self.onDelete)
+					.environment(\.editMode, $editMode)
 				}
 			}
+		}
+	}
+	
+	private func onDelete(at offsets: IndexSet) {
+		for index in offsets {
+			modelContext.delete(serverWidgetGroup.serviceWidgetDatas.sorted { $0.name < $1.name } [index])
+			serverWidgetGroup.serviceWidgetDatas.remove(at: serverWidgetGroup.serviceWidgetDatas.firstIndex(of: serverWidgetGroup.serviceWidgetDatas.sorted { $0.name < $1.name } [index])!)
 		}
 	}
 }
@@ -104,15 +128,19 @@ struct DashboardView: View {
 	
 	@State private var showNewWidgetSheet = false
 	@State private var addIsEnabled = true
+	@State var refresh = false
+	@State var editMode = EditMode.inactive
 	
 	var body: some View {
 		NavigationStack {
 			NoItemsView(enabled: fetchedServerWidgetGroups.isEmpty, name: "Configured Widgets")
 			
+			Text(editMode==EditMode.active ? "editing" : "not editing")
 			List {
 				ForEach(fetchedServerWidgetGroups) { serverWidgetGroup in
-					ServerWidgetGroupView(serverWidgetGroup: serverWidgetGroup, servers: fetchedServers)
+					ServerWidgetGroupView(serverWidgetGroup: serverWidgetGroup, servers: fetchedServers, editMode: $editMode)
 				}
+				
 				Section(header:  EmptySectionHeader(
 					title: "",
 					isOn: .constant(false),
@@ -123,9 +151,14 @@ struct DashboardView: View {
 			.listStyle(.inset)
 			.headerProminence(.increased)
 			.navigationTitle("Dashboard")
+			.refreshable {
+				refresh.toggle()
+			}
+			.background(Color.clear.disabled(refresh))
+			.environment(\.editMode, $editMode)
 			.toolbar {
 				ToolbarItem(placement: .topBarLeading) {
-					EditButton()
+					editButton
 				}
 				
 				ToolbarItem(placement: .topBarTrailing) {
@@ -146,6 +179,18 @@ struct DashboardView: View {
 			.onAppear {
 				servers = fetchedServers
 			}
+		}
+	}
+	
+	private var editButton: some View {
+		return Button {
+			if editMode == .inactive {
+				editMode = .active
+			} else {
+				editMode = .inactive
+			}
+		} label: {
+			Text(editMode == .inactive ? "Edit" : "Done")
 		}
 	}
 }

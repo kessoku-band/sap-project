@@ -14,12 +14,14 @@ final class ServiceWidgetLine {
 	var indicator: String
 	var evalValue: String
 	var evalColor: String
+	var unit: String
 	var order: Int
 	
-	init(indicator: String, evalValue: String, evalColor: String, order: Int) {
+	init(indicator: String, evalValue: String, evalColor: String, unit: String, order: Int) {
 		self.indicator = indicator
 		self.evalValue = evalValue
 		self.evalColor = evalColor
+		self.unit = unit
 		self.order = order
 	}
 }

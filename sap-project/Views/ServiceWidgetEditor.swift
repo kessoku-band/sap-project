@@ -20,25 +20,13 @@ struct ServiceWidgetLineFieldsView: View {
 			SpecialTextField("Required", text: $line.evalValue)
 				.multilineTextAlignment(.trailing)
 		}
+		LabeledContent("Unit") {
+			SpecialTextField("Required", text: $line.unit)
+				.multilineTextAlignment(.trailing)
+		}
 		LabeledContent("Color") {
 			SpecialTextField("Required", text: $line.evalColor)
 				.multilineTextAlignment(.trailing)
-		}
-	}
-}
-
-struct UsePreconfiguredView: View {
-	@Binding var lines: [ServiceWidgetLine]
-	
-	var body: some View {
-		NavigationStack {
-			List {
-				Section(header: Text("Preconfigured Services"), footer: Text("Using preconfigured services will automatically fill in all required parameters.")) {
-					NavigationLink("Docker") {
-						PreconfiguredView(title: "Docker", lines: $lines)
-					}
-				}
-			}
 		}
 	}
 }
@@ -84,7 +72,7 @@ struct ServiceWidgetEditor: View {
 						Text("Use Preconfigured")
 					}
 					.sheet(isPresented: $isShowingSheet, content: {
-						
+						PreconfiguredView(lines: lines)
 					})
 				}
 				
@@ -117,7 +105,7 @@ struct ServiceWidgetEditor: View {
 					lines = serviceWidgetData.serviceWidgetLines
 				} else {
 					selectedServer = servers[0].id
-					lines = (0..<3).map { i in return ServiceWidgetLine(indicator: "", evalValue: "", evalColor: "", order: i) }
+					lines = (0..<3).map { i in return ServiceWidgetLine(indicator: "", evalValue: "", evalColor: "", unit: "", order: i) }
 				}
 			}
 		}

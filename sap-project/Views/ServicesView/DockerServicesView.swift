@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DockerServicesView: View {
+	let serverName: String
 	var dockerServer: DockerServer
 	
 	@State private var selectedContainers = Set<Container>()
@@ -21,6 +22,8 @@ struct DockerServicesView: View {
 					}
 				}
 			}
+			.navigationTitle(serverName)
+			.navigationBarTitleDisplayMode(.inline)
 		}
     }
 }
