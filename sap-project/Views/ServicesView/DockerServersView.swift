@@ -46,20 +46,20 @@ struct DockerServerEditor: View {
 					}
 				}
 				
-				Section("Compose") {
-					ForEach($pathWrappers) { $pathWrapper in
-						PathTextField(pathWrapper: $pathWrapper)
-					}
-					.onDelete(perform: onDelete)
-					
-					Button {
-						withAnimation {
-							pathWrappers.append(PathWrapper(path: ""))
-						}
-					} label: {
-						Label("Add new compose folder", systemImage: "plus")
-					}
-				}
+//				Section("Compose") {
+//					ForEach($pathWrappers) { $pathWrapper in
+//						PathTextField(pathWrapper: $pathWrapper)
+//					}
+//					.onDelete(perform: onDelete)
+//					
+//					Button {
+//						withAnimation {
+//							pathWrappers.append(PathWrapper(path: ""))
+//						}
+//					} label: {
+//						Label("Add new compose folder", systemImage: "plus")
+//					}
+//				}
 			}
 			.navigationTitle("Configure Server")
 			.navigationBarTitleDisplayMode(.inline)
@@ -131,16 +131,20 @@ struct DockerServersView: View {
 	
 	var body: some View {
 		NavigationStack {
+			NoItemsView(enabled: dockerServers.isEmpty, name: "configured servers")
+			
 			List {
-				Section("Servers") {
-					ForEach(dockerServers) { dockerServer in
-						let server = servers.filter { $0.id == dockerServer.serverID } [0]
-						
-						NavigationLink(server.name) {
-							DockerServicesView(serverName:server.name, dockerServer: dockerServer)
+				if !dockerServers.isEmpty {
+					Section("Servers") {
+						ForEach(dockerServers) { dockerServer in
+							let server = servers.filter { $0.id == dockerServer.serverID } [0]
+							
+							NavigationLink(server.name) {
+								DockerServicesView(serverName:server.name, dockerServer: dockerServer)
+							}
 						}
+						.onDelete(perform: onDelete)
 					}
-					.onDelete(perform: onDelete)
 				}
 			}
 			.navigationTitle(navigationTitle)

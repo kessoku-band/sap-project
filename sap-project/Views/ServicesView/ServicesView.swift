@@ -16,11 +16,6 @@ struct ServicesView: View {
 				} label: {
 					Text("Docker")
 				}
-				NavigationLink {
-					DockerServersView(navigationTitle: "systemd")
-				} label: {
-					Text("systemd")
-				}
 			}
 			.navigationTitle("Services")
 		}

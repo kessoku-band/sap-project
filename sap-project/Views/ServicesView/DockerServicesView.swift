@@ -56,6 +56,7 @@ struct DockerServicesView: View {
 	
 	var body: some View {
 		NavigationStack {
+			
 			ZStack {
 				if !executeWrapper.completed {
 					VStack(alignment: .center) {

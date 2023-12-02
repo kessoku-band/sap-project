@@ -120,6 +120,7 @@ struct DashboardView: View {
 				ForEach(fetchedServerWidgetGroups) { serverWidgetGroup in
 					ServerWidgetGroupView(serverWidgetGroup: serverWidgetGroup, servers: fetchedServers, navPath: navPath)
 				}
+				.onDelete(perform: onDelete)
 				
 				Section(header:  EmptySectionHeader(
 					title: "",
@@ -153,6 +154,14 @@ struct DashboardView: View {
 			}
 			.onAppear {
 				servers = fetchedServers
+			}
+		}
+	}
+	
+	private func onDelete(at offsets: IndexSet) {
+		for index in offsets {
+			withAnimation {
+				modelContext.delete(fetchedServerWidgetGroups[index])
 			}
 		}
 	}

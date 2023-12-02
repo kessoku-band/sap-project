@@ -38,12 +38,6 @@ struct ServiceWidget: View {
 	
 	var body: some View {
 		ZStack {
-			NavigationLink(destination: ServiceWidgetEditor(serviceWidgetData: serviceWidgetData, navPath: navPath)) {
-				EmptyView()
-			}
-			.frame(width: 0)
-			.opacity(0)
-			
 			VStack(alignment: .leading) {
 				HStack {
 					Text(name)
