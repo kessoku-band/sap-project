@@ -11,6 +11,7 @@ import SwiftData
 struct DockerServiceLine: View {
 	let server: Server
 	let container: Container
+	@Binding var containerStatuses: [Container : String]
 	let dockerServer: DockerServer
 	
 	@ObservedObject private var executeWrapper = ExecuteWrapper()
@@ -22,21 +23,20 @@ struct DockerServiceLine: View {
 			Text(container.name)
 			
 			Spacer()
-
-			if !executeWrapper.completed {
+			
+			if !executeWrapper.completed && containerStatuses[container] == nil {
 				ProgressView()
 			} else {
-				Text(status)
+				Text(containerStatuses[container] ?? "")
 					.foregroundStyle(.secondary)
 			}
 		}
 		.onAppear {
 			Task {
-				status = await dockerServer.retrieveContainerStatus(server: server, container: container, executeWrapper: executeWrapper)
+				containerStatuses[container] = await dockerServer.retrieveContainerStatus(server: server, container: container, executeWrapper: executeWrapper)
 			}
 		}
 	}
-	
 }
 
 struct DockerServicesView: View {
@@ -47,8 +47,10 @@ struct DockerServicesView: View {
 	
 	@State private var selectedContainers = Set<Container>()
 	@State private var containers: [Container] = []
+	@State private var containerStatuses: [Container: String] = [:]
 	
 	@ObservedObject private var executeWrapper = ExecuteWrapper()
+	@State private var performingAction = false
 	
 	@State private var editMode: EditMode = .inactive
 	
@@ -63,13 +65,20 @@ struct DockerServicesView: View {
 							.foregroundStyle(.secondary)
 					}
 					.frame(minHeight: 0, maxHeight: .infinity, alignment: .center)
-					
+				} else if performingAction {
+					VStack(alignment: .center) {
+						ProgressView()
+							.frame(minHeight: 20)
+						Text("Running...")
+							.foregroundStyle(.secondary)
+					}
+					.frame(minHeight: 0, maxHeight: .infinity, alignment: .center)
 				} else {
 					VStack(alignment: .leading) {
 						let server = servers.filter { $0.id == dockerServer.serverID } [0]
 						
 						List(containers, id: \.self, selection: $selectedContainers) { container in
-							DockerServiceLine(server: server, container: container, dockerServer: dockerServer)
+							DockerServiceLine(server: server, container: container, containerStatuses: $containerStatuses, dockerServer: dockerServer)
 						}
 						.environment(\.editMode, $editMode)
 						.toolbar {
@@ -81,19 +90,95 @@ struct DockerServicesView: View {
 								ToolbarItem(placement: .bottomBar) {
 									HStack(alignment: .top) {
 										Button("Start") {
+											let executeWrapper = ExecuteWrapper()
+											let server = servers.filter { $0.id == dockerServer.serverID } [0]
 											
+											withAnimation {
+												editMode = .inactive
+											}
+											
+											performingAction = true
+											
+											Task {
+												await dockerServer.startContainers(server: server, containers: selectedContainers, executeWrapper: executeWrapper)
+											}
+											
+											for container in selectedContainers {
+												containerStatuses[container] = nil
+											}
+											
+											performingAction = false
+											
+											for container in selectedContainers {
+												let newExecuteWrapper = ExecuteWrapper()
+												
+												Task {
+													containerStatuses[container] = await dockerServer.retrieveContainerStatus(server: server, container: container, executeWrapper: newExecuteWrapper)
+												}
+											}
 										}
+										
 										Spacer()
+										
 										Button("Stop") {
 											let executeWrapper = ExecuteWrapper()
 											let server = servers.filter { $0.id == dockerServer.serverID } [0]
 											
+											withAnimation {
+												editMode = .inactive
+											}
+											
+											performingAction = true
+											
 											Task {
 												await dockerServer.stopContainers(server: server, containers: selectedContainers, executeWrapper: executeWrapper)
 											}
+											
+											for container in selectedContainers {
+												containerStatuses[container] = nil
+											}
+											
+											performingAction = false
+											
+											for container in selectedContainers {
+												let newExecuteWrapper = ExecuteWrapper()
+												
+												Task {
+													containerStatuses[container] = await dockerServer.retrieveContainerStatus(server: server, container: container, executeWrapper: newExecuteWrapper)
+												}
+											}
 										}
+										
 										Spacer()
-										Button("Restart") {}
+										
+										Button("Restart") {
+											let executeWrapper = ExecuteWrapper()
+											let server = servers.filter { $0.id == dockerServer.serverID } [0]
+											
+											withAnimation {
+												editMode = .inactive
+											}
+											
+											performingAction = true
+											
+											Task {
+												await dockerServer.restartContainers(server: server, containers: selectedContainers, executeWrapper: executeWrapper)
+											}
+											
+											for container in selectedContainers {
+												containerStatuses[container] = nil
+											}
+											
+											performingAction = false
+											
+											for container in selectedContainers {
+												let newExecuteWrapper = ExecuteWrapper()
+												
+												Task {
+													containerStatuses[container] = await dockerServer.retrieveContainerStatus(server: server, container: container, executeWrapper: newExecuteWrapper)
+												}
+											}
+										}
 									}
 									.padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
 								}
@@ -101,9 +186,10 @@ struct DockerServicesView: View {
 						}
 					}
 					.refreshable {
-						Task {
-							let server = servers.filter { $0.id == dockerServer.serverID } [0]
-							containers = await dockerServer.retrieveContainers(server: server, executeWrapper: executeWrapper)
+						let server = servers.filter { $0.id == dockerServer.serverID } [0]
+						
+						for container in containers {
+							containerStatuses[container] = await dockerServer.retrieveContainerStatus(server: server, container: container, executeWrapper: executeWrapper)
 						}
 					}
 				}

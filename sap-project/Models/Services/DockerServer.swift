@@ -48,12 +48,16 @@ final class DockerServer {
 		}
 	}
 	
-	func startContainers(containers: Set<Container>) {
-		
+	func startContainers(server: Server, containers: Set<Container>, executeWrapper: ExecuteWrapper) async {
+		for container in containers {
+			let _ = await executeWrapper.execute(server: server, command: "docker start \(container.name)")
+		}
 	}
 	
 	func restartContainers(server: Server, containers: Set<Container>, executeWrapper: ExecuteWrapper) async {
-		await stopContainers(server: server, containers: containers, executeWrapper: executeWrapper)
-		startContainers(containers: containers)
+		for container in containers {
+			let _ = await executeWrapper.execute(server: server, command: "docker restart \(container.name)")
+		}
+
 	}
 }

@@ -132,14 +132,16 @@ struct DockerServersView: View {
 	var body: some View {
 		NavigationStack {
 			List {
-				ForEach(dockerServers) { dockerServer in
-					let server = servers.filter { $0.id == dockerServer.serverID } [0]
-					
-					NavigationLink(server.name) {
-						DockerServicesView(serverName:server.name, dockerServer: dockerServer)
+				Section("Servers") {
+					ForEach(dockerServers) { dockerServer in
+						let server = servers.filter { $0.id == dockerServer.serverID } [0]
+						
+						NavigationLink(server.name) {
+							DockerServicesView(serverName:server.name, dockerServer: dockerServer)
+						}
 					}
+					.onDelete(perform: onDelete)
 				}
-				.onDelete(perform: onDelete)
 			}
 			.navigationTitle(navigationTitle)
 			.toolbar {

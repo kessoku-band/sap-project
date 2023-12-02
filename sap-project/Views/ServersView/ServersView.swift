@@ -14,6 +14,8 @@ struct ServersView: View {
 	
 	@Query var fetchedServers: [Server]
 	@Query var keys: [PrivateKey]
+	@Query var dockerServers: [DockerServer]
+	@Query var serverWidgetGroups: [ServerWidgetGroup]
 	
 	@State private var servers: [Server] = []
 	@State private var showNewServerSheet = false
@@ -76,6 +78,15 @@ struct ServersView: View {
 				key.serversUsing.remove(servers[index].id)
 			}
 			modelContext.delete(servers[index])
+			
+			for dockerServer in dockerServers.filter({ $0.serverID == servers[index].id }) {
+				modelContext.delete(dockerServer)
+			}
+			
+			for serverWidgetGroup in serverWidgetGroups.filter({ $0.serverID == servers[index].id }) {
+				modelContext.delete(serverWidgetGroup)
+			}
+			
 			servers.remove(at: index)
 		}
 	}
